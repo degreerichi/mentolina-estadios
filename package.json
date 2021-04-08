@@ -22,5 +22,8 @@
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.2.2",
     "react-social-login-buttons": "^3.4.0"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^3.0.3"
   }
 }
