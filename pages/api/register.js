@@ -27,13 +27,13 @@ export default function handler(req, res){
             httpOnly: true
          });
 
-         res.send({
+         res.send(200).json({
             result: 'ok'
          });
 
       }).catch(()=>{
 
-         res.send({
+         res.send(200).json({
             result: 'error',
             message: 'Error, no se pudo registrar'
          });
