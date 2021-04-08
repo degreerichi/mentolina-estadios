@@ -1,0 +1,18 @@
+@font-face {
+   font-family: $main-font;
+   src: 
+      url('/fonts/MonumentExtended-Regular.eot') format('eot'),
+      url('/fonts/MonumentExtended-Regular.ttf') format('ttf'),
+      url('/fonts/MonumentExtended-Regular.woff') format('woff'),
+      url('/fonts/MonumentExtended-Regular.woff2') format('woff2');
+   font-weight: normal;
+}
+@font-face {
+   font-family: $main-font;
+   src: 
+      url('/fonts/MonumentExtended-Ultrabold.eot') format('eot'),
+      url('/fonts/MonumentExtended-Ultrabold.ttf') format('ttf'),
+      url('/fonts/MonumentExtended-Ultrabold.woff') format('woff'),
+      url('/fonts/MonumentExtended-Ultrabold.woff2') format('woff2');
+   font-weight: bold;
+}

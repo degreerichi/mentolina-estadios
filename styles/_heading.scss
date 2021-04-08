@@ -1,0 +1,33 @@
+.the-heading {
+   @include default-transition-all;
+   position: fixed;
+   width: 100%;
+   height: 100vh;
+   top: 0;
+   left: 0;
+   z-index: $z-index-2;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: $size-base * 3;
+   background-color: rgba(0, 0, 0, 0.08);
+   .mi-casa-logo {
+      width: 50vw;
+      position: relative;
+      display: block;
+      &:before {
+         content: url("/media/mi-casa.png");
+         position: absolute;
+         width: 50px;
+         top: 0;
+         right: 0;
+      }
+   }
+   &.reduced {
+      height: $nav-height;
+      .mi-casa-logo {
+         width: 150px;
+      }
+   }
+}

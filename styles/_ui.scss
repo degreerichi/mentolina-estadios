@@ -1,0 +1,15 @@
+.button {
+   @include default-transition-all;
+   border-radius: $border-radius;
+   display: inline-block;
+   padding: $size-base * 2.5 $size-base * 3 $size-base * 2.5 $size-base * 3;
+   background-color: map-get($colors, orange);
+   text-decoration: none;
+   color: map-get($colors, white);
+   font-family: $main-font;
+   &:hover {
+      text-decoration: none;
+      color: white;
+      background-color: map-get($colors, orange-light);
+   }
+}

@@ -1,0 +1,39 @@
+@import '../node_modules/mapbox-gl/dist/mapbox-gl.css';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+@import 'reset';
+@import 'settings';
+@import 'mixins';
+@import 'heading';
+@import 'modals';
+@import 'loader';
+@import 'nav';
+@import 'ui';
+@import 'map';
+@import 'fonts';
+
+body {
+   font-family: 'Source Sans Pro', sans-serif;
+}
+
+$hsizes: (
+   h1: $font-size-base * 2.5,
+   h2: $font-size-base * 2,
+   h3: $font-size-base * 1.8,
+   h4: $font-size-base * 1.6,
+   h5: $font-size-base * 1.2
+);
+
+@each $h, $size in $hsizes {
+   #{$h} {
+      font-size: $size;
+   }
+}
+
+*:not(div) {
+   @include default-transition-all;
+}
+
+h1, h2, h3, h4, h5 {
+   font-family: $main-font;
+}
