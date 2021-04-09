@@ -9,7 +9,7 @@ export default function handler(req, res){
 
       const cookies = new Cookies(req, res);
 
-      if(firebase.app() === null || firebase.app() === undefined)
+      if(firebase.apps.length === 0)
          firebase.initializeApp(firebaseConfig);
       
       var db = firebase.firestore();
@@ -27,13 +27,13 @@ export default function handler(req, res){
             httpOnly: true
          });
 
-         res.send(200).json({
+         res.send({
             result: 'ok'
          });
 
       }).catch(()=>{
 
-         res.send(200).json({
+         res.send({
             result: 'error',
             message: 'Error, no se pudo registrar'
          });
