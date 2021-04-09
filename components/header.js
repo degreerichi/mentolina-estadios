@@ -136,7 +136,7 @@ export default function Header({headerReduced}) {
          <Modal modalOpened={modalRegisterOpened} toggleModalAction={toggleModalRegister}>
             <h2 className="mb-5">Registrate para participar</h2>
             <GoogleLogin
-               clientId="30296681928-ni08nropiqef7hmsl9g0efm807ppvnsn.apps.googleusercontent.com"
+               clientId="946992110205-ad22psdeoh529a4806s6rlj4he9hbpmj.apps.googleusercontent.com"
                // secret=glBbrQI_aavwbS25xElecBr7
                buttonText="Login"
                onSuccess={googleLoginCallback}
