@@ -34,3 +34,11 @@
       opacity: 1;
    }
 }
+
+.simple-loader {
+   position: fixed;
+   z-index: $z-index-preloader;
+   bottom: $nav-height - $size-base;
+   left: $size-base * 3;
+   color: white;
+}

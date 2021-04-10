@@ -10,7 +10,17 @@
 @import 'nav';
 @import 'ui';
 @import 'map';
+@import 'estadios';
 @import 'fonts';
+
+@each $key, $color in $colors {
+   .background-#{$key} {
+      background-color: $color;
+   }
+   .text-#{$key} {
+      color: $color;
+   }
+}
 
 body {
    font-family: 'Source Sans Pro', sans-serif;

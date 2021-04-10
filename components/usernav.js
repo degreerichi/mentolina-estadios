@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 export default function Usernav({user, actions}) {
 
@@ -23,7 +25,7 @@ export default function Usernav({user, actions}) {
                   <span>Logueado con {user.platform}</span>
                </div>
                <img className="user-pic" src={user.pic} alt=""/>
-               <span className="arrow"><i class="fas fa-sort-down"></i></span>
+               <span className="arrow"><FontAwesomeIcon icon={faSortDown}/></span>
                <div className={`user-nav-actions ${navOpened ? 'show' : ''}`}>
                   {actionsElements}
                </div>

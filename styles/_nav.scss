@@ -9,6 +9,10 @@
    height: $nav-height;
    z-index: $z-index-2;
    padding: $size-base * 3;
+   pointer-events: none;
+   button {
+      pointer-events: all;
+   }
 }
 
 .user-nav {

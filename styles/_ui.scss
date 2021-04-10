@@ -1,5 +1,6 @@
 .button {
    @include default-transition-all;
+   border: none;
    border-radius: $border-radius;
    display: inline-block;
    padding: $size-base * 2.5 $size-base * 3 $size-base * 2.5 $size-base * 3;
@@ -7,9 +8,21 @@
    text-decoration: none;
    color: map-get($colors, white);
    font-family: $main-font;
+   z-index: $z-index-max;
+   &.small {
+      font-size: 0.8rem;
+      padding: $size-base $size-base * 1.5 $size-base $size-base * 1.5;
+   }
    &:hover {
       text-decoration: none;
       color: white;
       background-color: map-get($colors, orange-light);
    }
+   &:disabled {
+      opacity: 0.3;
+   }
+}
+
+label.error {
+   color: map-get($colors, red);
 }

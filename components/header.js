@@ -9,8 +9,10 @@ import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-butto
 import GoogleLogin from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFutbol } from '@fortawesome/free-solid-svg-icons'
 
-export default function Header({headerReduced}) {
+export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled}) {
 
    const router = useRouter();
 
@@ -19,6 +21,7 @@ export default function Header({headerReduced}) {
    let [checkingLoginStatus, setCheckingLoginStatus] = useState(true);
    let [userData, setUserData] = useState({});
    let [isAuthenticated, setIsAuthenticated] = useState(false);
+   let [wizardActive, setWizardActive] = useState(false);
 
    const toggleModalRegister = ()=>{
       setModalRegisterOpened(!modalRegisterOpened);
@@ -122,13 +125,16 @@ export default function Header({headerReduced}) {
          <Usernav user={userData} actions={[{text: "Cerrar Sesión", action: logout}]}/>
          <div className={`the-heading ${headerReduced ? 'reduced' : ''}`}>
             <img className="mi-casa-logo mentolina-after" src="/media/mi-casa-logo.svg" alt=""/>
-            {!headerReduced
-               ? (
-                  isAuthenticated ? (
-                     <Estadios/>
-                  ) : <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <i className="far fa-futbol"></i></a>
-               )
-               : ''}
+            {
+               isAuthenticated ? (
+                  <Estadios 
+                     map={map}
+                     reduced={headerReduced} 
+                     controlHeaderReduced={controlHeaderReduced} 
+                     wizardActive={wizardActive} 
+                     setWizardActive={setWizardActive}
+                     setButtonViewDisabled={setButtonViewDisabled}/>
+               ) : (!headerReduced ? <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a> : '')}
             {/* <a href="#!" className="button mt-2" onClick={zoomIn}><i className="fas fa-plus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={zoomOut}><i className="fas fa-minus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={toggleHeaderReduced}><i className="fas fa-toggle-on"></i></a> */}
