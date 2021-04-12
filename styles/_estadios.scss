@@ -19,3 +19,35 @@
       transform: translateX(-50%) translateY(0) scale(1);
    }
 }
+
+.estadio-wrapper {
+   display: flex;
+   flex-direction: row;
+   color: white;
+   align-items: flex-start;
+   font-family: $main-font;
+   .estadion-img {
+      img {
+         width: 80px;
+      }
+   }   
+   .estadio-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .estadio-text-actions {
+         display: flex;
+         flex-direction: row;
+         justify-content: flex-start;
+         align-items: center;
+      }
+      .nombre {
+         font-size: 1.5rem;
+         line-height: 2rem;
+      }
+      .apodo {
+         font-size: 2rem;
+         line-height: 2.5rem;
+      }
+   }
+}

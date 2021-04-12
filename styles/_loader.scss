@@ -41,4 +41,10 @@
    bottom: $nav-height - $size-base;
    left: $size-base * 3;
    color: white;
+   &.inline {
+      position: relative !important;
+      display: inline-block;
+      bottom: 0;
+      left: 0;
+   }
 }

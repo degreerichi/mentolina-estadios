@@ -11,14 +11,16 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFutbol } from '@fortawesome/free-solid-svg-icons'
+import useIsLogged from '../components/hooks/isLogged'
 
 export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled}) {
 
    const router = useRouter();
 
+   let [isLogged, checkingLogged, refreshCheck] = useIsLogged();
    let [modalRegisterOpened, setModalRegisterOpened] = useState(false);
    let [showPreloader, setShowPreloader] = useState(false);
-   let [checkingLoginStatus, setCheckingLoginStatus] = useState(true);
+   // let [checkingLoginStatus, setCheckingLoginStatus] = useState(true);
    let [userData, setUserData] = useState({});
    let [isAuthenticated, setIsAuthenticated] = useState(false);
    let [wizardActive, setWizardActive] = useState(false);
@@ -66,7 +68,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          console.log(res);
          setShowPreloader(false);
          setModalRegisterOpened(false);
-         setIsAuthenticated(true);
+         refreshCheck();
       }).catch((err)=>{
          console.log(err);
       });
@@ -78,26 +80,6 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
       localStorage.setItem(USER_DATA, JSON.stringify(data));
    }
 
-   const checkLoginStatus = ()=>{
-
-      if(localStorage.getItem(USER_DATA) === null){
-         setCheckingLoginStatus(false);
-      }else{
-
-         var userData = JSON.parse(localStorage.getItem(USER_DATA));
-         axios.post('api/check', userData)
-            .then((res)=>{
-               setCheckingLoginStatus(false);
-               setIsAuthenticated(true);
-               console.log(res);
-            })
-            .catch((err)=>{
-               console.log(err);
-            });
-      }
-
-   }
-
    const logout = ()=>{
       
       setShowPreloader(true);
@@ -106,6 +88,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          setShowPreloader(false);
          localStorage.removeItem(USER_DATA);
          setUserData({});
+         refreshCheck();
          router.reload();
       })
       .catch((err)=>{
@@ -115,7 +98,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
    }
 
    useEffect(()=>{
-      checkLoginStatus();
+      // checkLoginStatus();
       setUserData(JSON.parse(localStorage.getItem(USER_DATA)));
       // firebase.initializeApp(firebaseConfig);
    }, []);
@@ -126,7 +109,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          <div className={`the-heading ${headerReduced ? 'reduced' : ''}`}>
             <img className="mi-casa-logo mentolina-after" src="/media/mi-casa-logo.svg" alt=""/>
             {
-               isAuthenticated ? (
+               isLogged ? (
                   <Estadios 
                      map={map}
                      reduced={headerReduced} 
@@ -165,7 +148,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
             {/* <a href="#!" className="button mb-3">Registrarse con Google</a> */}
             {/* <a href="#!" className="button">Registrarse con Facebook</a> */}
          </Modal>
-         <Loader show={showPreloader || checkingLoginStatus}/>
+         <Loader show={showPreloader || checkingLogged}/>
       </>
    )
 }

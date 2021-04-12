@@ -9,8 +9,10 @@ import Input from 'react-validation/build/input';
 import Select from 'react-validation/build/select';
 import Button from 'react-validation/build/button';
 import { required } from './validations/validations'
+import Estadio from './estadio'
 import Loader from './loader'
 import axios from 'axios'
+import useIsLogged from '../components/hooks/isLogged'
 
 var marker = null;
 
@@ -23,12 +25,14 @@ export default function Estadios({
    setButtonViewDisabled
 }) {
 
+   let [isLogged] = useIsLogged();
+
    let userData = JSON.parse(localStorage.getItem(USER_DATA));
-   let apellido = userData.name.split(" ").pop();
+   let apellido = userData !== null ? userData.name.split(" ").pop() : '';
 
    let [location, setLocation] = useState(null);
    let [locationSelected, setLocationSelected] = useState(false);
-   let [id, setId] = useState(userData.id);
+   let [id, setId] = useState(userData !== null ? userData.id  : '');
    let [nombre, setNombre] = useState(`Estadio ${apellido}`);
    let [apodo, setApodo] = useState('El épico');
    let [saving, setSaving] = useState(false);
@@ -96,8 +100,17 @@ export default function Estadios({
       <>
          {!reduced ? (
             <>
-               <h4 className="text-white mt-3">No tienes estadios registrados</h4>
-               <a href="#!" className="button mt-3" onClick={startWizard}>Agregar estadio</a>
+            {isLogged ? (
+               <Estadio 
+                  user={id} 
+                  controlHeaderReduced={controlHeaderReduced} 
+                  map={map} 
+                  startWizardAction={startWizard}/>
+            ) : (
+               <>
+                  
+               </>
+            )}
             </>
          ) : ''}
          <div className={`wizard-nav ${wizardActive ? 'show' : ''}`}>
@@ -107,29 +120,29 @@ export default function Estadios({
             <a href="#!" className="button small background-blue" onClick={cancelWizard}>Cancelar <FontAwesomeIcon icon={faTimes}/></a>
          </div>
          <Modal modalOpened={locationSelected} toggleModalAction={cancelWizard}>
-            <h5 className="mb-3">Complete la información de su estadio</h5>
+            <h5 className="mb-3">Confirme la información de su estadio</h5>
             <Form onSubmit={submitHandler}>
-               <label for="exampleInputEmail1">Ubicación</label>
+               <label htmlFor="exampleInputEmail1">Ubicación</label>
                <div className="row mb-2">
                   <div className="col">
-                     <label for="exampleInputEmail1">Latitud</label>
+                     <label htmlFor="exampleInputEmail1">Latitud</label>
                      <Input type="text" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
                         validations={[required]}/>
                   </div>
                   <div className="col">
-                     <label for="exampleInputEmail1">Longitud</label>
+                     <label htmlFor="exampleInputEmail1">Longitud</label>
                      <Input type="text" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
                         validations={[required]}/>
                   </div>
                </div>
                <div className="form-group w-100">
-                  <label for="exampleInputEmail1">Nombre del Estadio</label>
+                  <label htmlFor="exampleInputEmail1">Nombre del Estadio</label>
                   <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e)=>{setNombre(e.target.value)}}
                      validations={[required]}/>
                </div>
                <div className="form-group w-100">
-                  <label for="exampleInputEmail1">Apodo</label>
-                  <Select name="apodo" class="form-control" id="exampleFormControlSelect1"
+                  <label htmlFor="exampleInputEmail1">Apodo</label>
+                  <Select name="apodo" className="form-control" id="exampleFormControlSelect1"
                      validations={[required]} value={apodo} onChange={(e)=>{setApodo(e.target.value)}}>
                      <option value="El epico">El épico</option>
                      <option value="El sobado">El sobado</option>

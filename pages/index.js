@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import Header from '../components/header'
 import SimpleLoader from '../components/simpleLoader'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import useIsLogged from '../components/hooks/isLogged'
 import { faExpandArrowsAlt, faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons'
 import firebaseConfig from '../components/firebaseconfig'
 import firebase from 'firebase'
@@ -20,12 +21,14 @@ var map;
 
 export default function Home() {
 
+   let [isLogged, checkingLogged] = useIsLogged();
+
    let headingRef = useRef();
    let [headerReduced, setHeaderReduced] = useState(false);
    let [buttonViewDisabled, setButtonViewDisabled] = useState(false);
    let [mapInstance, setMapInstance] = useState(null);
-   let [gettingEstadios, setGettingEstadios] = useState(false);
    let [estadios, setEstadios] = useState([]);
+   let [loadingEstadios, setLoadingEstadios] = useState(false);
 
    useEffect(()=>{
 
@@ -37,35 +40,47 @@ export default function Home() {
          container: 'map',
          style: 'mapbox://styles/ogilvyhn/ckn4w7ba5023n17qz53gzncbj'
       });
-      setMapInstance(map);
-      getEstadios();
+      map.on('load', function() {
+         console.log('A load event occurred.');
+         setMapInstance(map);
+         getEstadios(map);
+      });
       // firebase.analytics();
    }, []);
 
-   const getEstadios = ()=>{
+   const getEstadios = (map)=>{
+
+      console.log(`Map: ${map}`);
 
       var db = firebase.firestore();
-      var locations = [];
+      
+      setLoadingEstadios(true);
 
       db.collection('estadios').get().then((docs)=>{
+         var locations = [];
          docs.forEach((doc) => {
+            let datos = doc.data();
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            locations.push([doc.data().ubicacion.latitude, doc.data().ubicacion.longitude]);
-        });
+            // console.log(doc.id, " => ", datos);
+            locations.push([datos.ubicacion.longitude, datos.ubicacion.latitude]);
+         });
+         setEstadios(locations);
+         loadMarkers(map, locations);
+         setLoadingEstadios(false);
+      }).catch((err)=>{
+         console.log(err);
       });
 
-      setEstadios(locations);
-      loadMarkers();
 
    }
 
-   const loadMarkers = ()=>{
-      estadios.map((location)=>{
+   const loadMarkers = (map, locations)=>{
+      locations.map((location)=>{
+         console.log(`Location: ${location}`);
          new mapboxgl.Marker({
             color: "#ce3f3f"
          }).setLngLat(location)
-         .addTo(map);
+            .addTo(map);
       });
    }
 
@@ -77,8 +92,20 @@ export default function Home() {
       if(map != null) map.zoomOut({duration: 500});
    }
 
+   const resetZoomAndLocation = ()=>{
+      if(map != null){
+         // map.setCenter([-86.153, 14.847]);
+         // map.setZoom(6.5);
+         map.flyTo({
+            zoom: 6.5,
+            center: [-86.153, 14.847],
+            pitch: 0
+         });
+      }
+   }
+
    const toggleHeaderReduced = ()=>{
-      !headerReduced ? zoomIn() : zoomOut();
+      !headerReduced ? zoomOut() : resetZoomAndLocation();
       setHeaderReduced(!headerReduced);
    }
 
@@ -102,7 +129,7 @@ export default function Home() {
             setButtonViewDisabled={setButtonViewDisabled}
             />
          <div id="map" className="background-map-wrapper"></div>
-         <SimpleLoader show={true}/>
+         <SimpleLoader show={loadingEstadios}/>
       </>
    )
 }
