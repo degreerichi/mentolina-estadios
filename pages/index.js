@@ -41,7 +41,6 @@ export default function Home() {
          style: 'mapbox://styles/ogilvyhn/ckn4w7ba5023n17qz53gzncbj'
       });
       map.on('load', function() {
-         console.log('A load event occurred.');
          setMapInstance(map);
          getEstadios(map);
       });
@@ -75,7 +74,6 @@ export default function Home() {
 
    const loadMarkers = (map, estadiosRaw)=>{
       estadiosRaw.map((estadio)=>{
-         console.log(`Estadio: ${estadio}`);
 
          var el = document.createElement('div');
          el.className = 'marker';

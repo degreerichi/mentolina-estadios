@@ -58,7 +58,7 @@ export default function Estadios({
    }
 
    const clickMarkerEvent = (e)=>{
-      console.log(e.lngLat);
+      // console.log(e.lngLat);
       if(marker !== null) marker.remove();
       setLocation(e.lngLat);
       marker = new mapboxgl

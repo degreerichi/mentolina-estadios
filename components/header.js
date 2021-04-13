@@ -30,7 +30,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
    }
 
    const facebookLoginCallback = (res)=>{
-      console.log(res);
+      // console.log(res);
       if(!res.hasOwnProperty('status')){
          let data = {
             id: res.id,
@@ -45,7 +45,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
    }
 
    const googleLoginCallback = (res)=>{
-      console.log(res);
+      // console.log(res);
       if(!res.hasOwnProperty('error')){
          let data = {
             id: res.googleId,
