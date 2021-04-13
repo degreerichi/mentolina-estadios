@@ -1,5 +1,5 @@
 import firebaseConfig from '../../components/firebaseconfig'
-import firebase from 'firebase'
+import * as firebase from "firebase/app"
 import "firebase/firestore"
 
 export default function handler(req, res){

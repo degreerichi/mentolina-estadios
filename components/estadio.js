@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SimpleLoader from './simpleLoader'
 import firebaseConfig from '../components/firebaseconfig'
-import firebase from 'firebase'
+import * as firebase from "firebase/app"
 import "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faTimes } from '@fortawesome/free-solid-svg-icons'

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useIsLogged from '../components/hooks/isLogged'
 import { faExpandArrowsAlt, faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons'
 import firebaseConfig from '../components/firebaseconfig'
-import firebase from 'firebase'
+import * as firebase from "firebase/app"
 import "firebase/firestore"
 
 var map;
