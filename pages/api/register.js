@@ -1,5 +1,5 @@
 import firebaseConfig from '../../components/firebaseconfig'
-import * as firebase from "firebase/app"
+import firebase from "firebase/app"
 import "firebase/firestore"
 import Cookies from 'cookies'
 
