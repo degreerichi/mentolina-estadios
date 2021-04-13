@@ -10,6 +10,10 @@
    z-index: $z-index-2;
    padding: $size-base * 3 $size-base * 3 $size-base * 7 $size-base * 3;
    pointer-events: none;
+   @include media-breakpoint-down(sm) {
+      padding: $size-base * 3 $size-base * 3 $size-base * 3 $size-base * 3;
+      align-items: flex-end;
+   }
    button {
       pointer-events: all;
    }
