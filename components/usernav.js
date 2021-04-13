@@ -21,8 +21,8 @@ export default function Usernav({user, actions}) {
          ? (
             <div className="user-nav" onClick={()=>{setNavOpened(!navOpened)}}>
                <div className="user-info">
-                  <h5>{user.name}</h5>
-                  <span>Logueado con {user.platform}</span>
+                  <h5 className="nombre">{user.name}</h5>
+                  <span className="login-info">Logueado con {user.platform}</span>
                </div>
                <img className="user-pic" src={user.pic} alt=""/>
                <span className="arrow"><FontAwesomeIcon icon={faSortDown}/></span>

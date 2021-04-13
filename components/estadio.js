@@ -68,7 +68,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
                      <a href="#!" className="button mt-3" onClick={startWizardAction}>Agregar estadio</a>
                   </>
                ) : (
-                  <div className="mt-4">
+                  <div className="mt-5">
                      <h1 className="text-center mb-3 text-white">Tu estadio</h1>
                      <div className="estadio-wrapper mt-2">
                         <div className="estadion-img">

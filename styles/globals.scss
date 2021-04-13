@@ -13,34 +13,8 @@
 @import 'estadios';
 @import 'fonts';
 
-@each $key, $color in $colors {
-   .background-#{$key} {
-      background-color: $color;
-   }
-   .text-#{$key} {
-      color: $color;
-   }
-}
-
 body {
    font-family: 'Source Sans Pro', sans-serif;
-}
-
-$hsizes: (
-   h1: $font-size-base * 2.5,
-   h2: $font-size-base * 2,
-   h3: $font-size-base * 1.8,
-   h4: $font-size-base * 1.6,
-   h5: $font-size-base * 1.2
-);
-
-@each $h, $size in $hsizes {
-   #{$h} {
-      font-size: $size;
-      @include media-breakpoint-down(sm) {
-         font-size: $size * 0.8;
-      }
-   }
 }
 
 *:not(div) {

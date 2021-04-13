@@ -23,3 +23,31 @@ $z-index-3: 960;
 $z-index-4: 950;
 
 $main-font: 'monument';
+
+
+$hsizes: (
+   h1: $font-size-base * 2.5,
+   h2: $font-size-base * 2,
+   h3: $font-size-base * 1.8,
+   h4: $font-size-base * 1.6,
+   h5: $font-size-base * 1.2
+);
+
+@each $h, $size in $hsizes {
+   #{$h} {
+      font-size: $size;
+      @include media-breakpoint-down(sm) {
+         font-size: $size * 0.8;
+      }
+   }
+}
+
+
+@each $key, $color in $colors {
+   .background-#{$key} {
+      background-color: $color;
+   }
+   .text-#{$key} {
+      color: $color;
+   }
+}

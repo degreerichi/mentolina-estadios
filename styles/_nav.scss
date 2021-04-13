@@ -38,6 +38,18 @@
       @include media-breakpoint-down(sm) {
          padding: 0 $size-base * 2 0 $size-base * 2;
       }
+      .nombre {
+         @include media-breakpoint-down(sm) {
+            font-size: 0.6rem;
+            line-height: 0.2rem;
+         }
+      }
+      .login-info {
+         @include media-breakpoint-down(sm) {
+            font-size: 0.5rem;
+            line-height: 0.2rem;
+         }
+      }
    }
    .user-pic {
       width: 60px;

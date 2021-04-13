@@ -54,7 +54,7 @@
          line-height: 2rem;
          @include media-breakpoint-down(sm) {
             font-size: 1.2rem;
-            line-height: 1.8rem;
+            line-height: 1.6rem;
          }
       }
       .apodo {
@@ -62,7 +62,7 @@
          line-height: 2.5rem;
          @include media-breakpoint-down(sm) {
             font-size: 1.5rem;
-            line-height: 2rem;
+            line-height: 1.8rem;
          }
       }
    }
