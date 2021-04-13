@@ -85,7 +85,8 @@ export default function Home() {
 
          var popup = new mapboxgl.Popup({
             offset: 25, 
-            closeOnMove: true
+            closeOnMove: true,
+            className: 'marker-popup'
          }).setText(
             `${estadio.nombre}, ${estadio.seudonimo}`
          );
@@ -144,6 +145,7 @@ export default function Home() {
             />
          <div id="map" className="background-map-wrapper"></div>
          <SimpleLoader show={loadingEstadios}/>
+         <img src="" alt=""/>
       </>
    )
 }
