@@ -57,29 +57,43 @@ export default function Home() {
       setLoadingEstadios(true);
 
       db.collection('estadios').get().then((docs)=>{
-         var locations = [];
+         var estadiosRaw = [];
          docs.forEach((doc) => {
-            let datos = doc.data();
+            // let datos = doc.data();
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", datos);
-            locations.push([datos.ubicacion.longitude, datos.ubicacion.latitude]);
+            estadiosRaw.push(doc.data());
          });
-         setEstadios(locations);
-         loadMarkers(map, locations);
+         setEstadios(estadiosRaw);
+         loadMarkers(map, estadiosRaw);
          setLoadingEstadios(false);
       }).catch((err)=>{
          console.log(err);
       });
 
-
    }
 
-   const loadMarkers = (map, locations)=>{
-      locations.map((location)=>{
-         console.log(`Location: ${location}`);
+   const loadMarkers = (map, estadiosRaw)=>{
+      estadiosRaw.map((estadio)=>{
+         console.log(`Estadio: ${estadio}`);
+
+         var el = document.createElement('div');
+         el.className = 'marker';
+         var img = document.createElement('img');
+         img.src = '/media/estadio-icon.svg';
+         el.appendChild(img);
+
+         var popup = new mapboxgl.Popup({
+            offset: 25, 
+            closeOnMove: true
+         }).setText(
+            `${estadio.nombre}, ${estadio.seudonimo}`
+         );
+
          new mapboxgl.Marker({
-            color: "#ce3f3f"
-         }).setLngLat(location)
+            element: el
+         }).setLngLat([estadio.ubicacion.longitude, estadio.ubicacion.latitude])
+            .setPopup(popup)
             .addTo(map);
       });
    }
