@@ -117,7 +117,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                      wizardActive={wizardActive} 
                      setWizardActive={setWizardActive}
                      setButtonViewDisabled={setButtonViewDisabled}/>
-               ) : (!headerReduced ? <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a> : '')}
+               ) : (!headerReduced ? <a href="#!" className="button mt-4" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a> : '')}
             {/* <a href="#!" className="button mt-2" onClick={zoomIn}><i className="fas fa-plus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={zoomOut}><i className="fas fa-minus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={toggleHeaderReduced}><i className="fas fa-toggle-on"></i></a> */}

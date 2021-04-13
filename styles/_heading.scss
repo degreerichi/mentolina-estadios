@@ -16,6 +16,9 @@
       width: 50vw;
       position: relative;
       display: block;
+      @include media-breakpoint-down(sm) {
+         width: 80vw;
+      }
       &:before {
          content: url("/media/mi-casa.png");
          position: absolute;

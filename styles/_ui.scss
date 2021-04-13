@@ -9,9 +9,17 @@
    color: map-get($colors, white);
    font-family: $main-font;
    z-index: $z-index-max;
+   @include media-breakpoint-down(sm) {
+      font-size: 0.8rem;
+      padding: $size-base * 1.8 $size-base * 2 $size-base * 1.8 $size-base * 2;
+   }
    &.small {
       font-size: 0.8rem;
       padding: $size-base $size-base * 1.5 $size-base $size-base * 1.5;
+      @include media-breakpoint-down(sm) {
+         font-size: 0.7rem;
+      }
+
    }
    &:hover {
       text-decoration: none;

@@ -18,6 +18,9 @@
    box-shadow: 0px 0px 200px rgba(255, 255, 255, 0.2);
    max-width: 400px;
    text-align: center;
+   @include media-breakpoint-down(sm) {
+      width: calc(100% - (#{$size-base} * 6));
+   }
    &.opened {
       pointer-events: all;
       transform: translate(-50%, -50%) scale(1);

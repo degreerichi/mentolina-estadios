@@ -37,6 +37,9 @@ $hsizes: (
 @each $h, $size in $hsizes {
    #{$h} {
       font-size: $size;
+      @include media-breakpoint-down(sm) {
+         font-size: $size * 0.8;
+      }
    }
 }
 

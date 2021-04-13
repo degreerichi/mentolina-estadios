@@ -143,7 +143,7 @@ export default function Home() {
             />
          <div id="map" className="background-map-wrapper"></div>
          <SimpleLoader show={loadingEstadios}/>
-         <img src="" alt=""/>
+         <img className="mentolina-logo" src="/media/mentolina-logo.png" alt=""/>
       </>
    )
 }

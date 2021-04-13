@@ -8,7 +8,7 @@
    width: 100%;
    height: $nav-height;
    z-index: $z-index-2;
-   padding: $size-base * 3;
+   padding: $size-base * 3 $size-base * 3 $size-base * 7 $size-base * 3;
    pointer-events: none;
    button {
       pointer-events: all;
@@ -29,14 +29,24 @@
    align-items: center;
    color: white;
    z-index: $z-index-max;
+   @include media-breakpoint-down(sm) {
+      padding: $size-base $size-base * 2 $size-base $size-base * 2;
+   }
    .user-info {
       padding: 0 $size-base * 3 0 $size-base * 2;
       text-align: right;
+      @include media-breakpoint-down(sm) {
+         padding: 0 $size-base * 2 0 $size-base * 2;
+      }
    }
    .user-pic {
       width: 60px;
       height: 60px;
       border-radius: 100%;
+      @include media-breakpoint-down(sm) {
+         width: 40px;
+         height: 40px;
+      }
    }
    .arrow {
       display: inline-block;

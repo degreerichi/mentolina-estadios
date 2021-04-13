@@ -26,6 +26,11 @@
    color: white;
    align-items: flex-start;
    font-family: $main-font;
+   @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+   }
    .estadion-img {
       img {
          width: 80px;
@@ -35,6 +40,9 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      @include media-breakpoint-down(sm) {
+         align-items: center;
+      }
       .estadio-text-actions {
          display: flex;
          flex-direction: row;
@@ -44,10 +52,18 @@
       .nombre {
          font-size: 1.5rem;
          line-height: 2rem;
+         @include media-breakpoint-down(sm) {
+            font-size: 1.2rem;
+            line-height: 1.8rem;
+         }
       }
       .apodo {
          font-size: 2rem;
          line-height: 2.5rem;
+         @include media-breakpoint-down(sm) {
+            font-size: 1.5rem;
+            line-height: 2rem;
+         }
       }
    }
 }
