@@ -30,7 +30,7 @@ const checkFacebookLoginStatus = (userData)=>{
             Facebook.init({
                appId: 827394434550474
             });
-            Facebook.login()
+            Facebook.getLoginStatus()
                .then((response) => {
                   if (response.status === 'connected') {
                      // logged in
