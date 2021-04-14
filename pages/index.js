@@ -126,7 +126,7 @@ export default function Home() {
       <>
          <Head>
             <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
-            <script src="https://kit.fontawesome.com/fdb97cba60.js" crossOrigin="anonymous"></script>
+            {/* <script src="https://kit.fontawesome.com/fdb97cba60.js" crossOrigin="anonymous"></script> */}
             <link rel="preconnect" href="https://fonts.gstatic.com"/>
             <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600;900&display=swap" rel="stylesheet"/>  
          </Head>
