@@ -17,8 +17,10 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
          db.collection('estadios').doc(`est${user}`).get().then((doc)=>{
             // console.log(doc.data());
-            setEstadioInfo(doc.data());
-            setLoading(false)
+            if(doc.data()){
+               setEstadioInfo(doc.data());
+            }
+            setLoading(false);
          }).catch((err)=>{
             console.log(err);
          });

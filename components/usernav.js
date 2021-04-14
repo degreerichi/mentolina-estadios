@@ -6,8 +6,8 @@ export default function Usernav({user, actions}) {
 
    let [navOpened, setNavOpened] = useState(false);
 
-   let actionsElements = actions.map((a)=>{
-      return <a className="user-nav-button" href="#!" onClick={a.action}>{a.text}</a>
+   let actionsElements = actions.map((a, i)=>{
+      return <a className="user-nav-button" href="#!" onClick={a.action} key={`a${i}`}>{a.text}</a>
    });
 
    return (
