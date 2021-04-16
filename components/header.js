@@ -14,7 +14,7 @@ import { faFutbol } from '@fortawesome/free-solid-svg-icons'
 import useIsLogged from '../components/hooks/isLogged'
 import * as Facebook from 'fb-sdk-wrapper'
 
-export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled}) {
+export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled, className}) {
 
    const router = useRouter();
 
@@ -141,9 +141,14 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
    }, []);
 
    return (
-      <>
+      <div className={className}>
          <Usernav user={userData} actions={[{text: "Cerrar Sesión", action: logout}]}/>
          <div className={`the-heading ${headerReduced ? 'reduced' : ''}`}>
+            <div className="header-background-video-wrapper">
+               <video className="header-background-video" autoPlay muted loop poster="/media/video/video-placeholder.jpg">
+                  <source src="/media/video/video.mp4" type="video/mp4"/>
+               </video>
+            </div>
             <img className="mi-casa-logo mentolina-after" src="/media/mi-casa-logo.svg" alt=""/>
             {
                isLogged ? (
@@ -187,6 +192,6 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
             {/* <a href="#!" className="button">Registrarse con Facebook</a> */}
          </Modal>
          <Loader show={showPreloader || checkingLogged}/>
-      </>
+      </div>
    )
 }

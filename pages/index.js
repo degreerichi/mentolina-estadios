@@ -136,6 +136,7 @@ export default function Home() {
                : <button href="#!" disabled={buttonViewDisabled} className="button" onClick={toggleHeaderReduced}>Volver <FontAwesomeIcon icon={faCompressArrowsAlt}/></button>}
          </div>
          <Header 
+            className="position-relative"
             headerReduced={headerReduced}
             map={mapInstance} 
             controlHeaderReduced={setHeaderReduced}
