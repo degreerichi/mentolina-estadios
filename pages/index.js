@@ -49,8 +49,6 @@ export default function Home() {
 
    const getEstadios = (map)=>{
 
-      console.log(`Map: ${map}`);
-
       var db = firebase.firestore();
       
       setLoadingEstadios(true);

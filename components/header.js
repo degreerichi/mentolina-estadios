@@ -149,7 +149,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   <source src="/media/video/video.mp4" type="video/mp4"/>
                </video>
             </div>
-            <img className="mi-casa-logo mentolina-after" src="/media/mi-casa-logo.svg" alt=""/>
+            <img className="mi-casa-logo mentolina-after" src="/media/mi-casa-logo-test.svg" alt=""/>
             {
                isLogged ? (
                   <Estadios 
