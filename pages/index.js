@@ -72,27 +72,30 @@ export default function Home() {
 
    const loadMarkers = (map, estadiosRaw)=>{
       estadiosRaw.map((estadio)=>{
-
-         var el = document.createElement('div');
-         el.className = 'marker';
-         var img = document.createElement('img');
-         img.src = '/media/estadio-icon.svg';
-         el.appendChild(img);
-
-         var popup = new mapboxgl.Popup({
-            offset: 25, 
-            closeOnMove: true,
-            className: 'marker-popup'
-         }).setText(
-            `${estadio.nombre}, ${estadio.seudonimo}`
-         );
-
-         new mapboxgl.Marker({
-            element: el
-         }).setLngLat([estadio.ubicacion.longitude, estadio.ubicacion.latitude])
-            .setPopup(popup)
-            .addTo(map);
+         createEstadioMarker(estadio);
       });
+   }
+
+   const createEstadioMarker = (estadio)=>{
+      var el = document.createElement('div');
+      el.className = 'marker';
+      var img = document.createElement('img');
+      img.src = '/media/estadio-icon.svg';
+      el.appendChild(img);
+
+      var popup = new mapboxgl.Popup({
+         offset: 25, 
+         closeOnMove: true,
+         className: 'marker-popup'
+      }).setText(
+         `${estadio.nombre}, ${estadio.seudonimo}`
+      );
+
+      new mapboxgl.Marker({
+         element: el
+      }).setLngLat([estadio.ubicacion.longitude, estadio.ubicacion.latitude])
+         .setPopup(popup)
+         .addTo(map);
    }
 
    const zoomIn = ()=>{
@@ -108,7 +111,7 @@ export default function Home() {
          // map.setCenter([-86.153, 14.847]);
          // map.setZoom(6.5);
          map.flyTo({
-            zoom: 6.5,
+            zoom: 7,
             center: [-86.153, 14.847],
             pitch: 0
          });
@@ -126,7 +129,7 @@ export default function Home() {
             <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
             {/* <script src="https://kit.fontawesome.com/fdb97cba60.js" crossOrigin="anonymous"></script> */}
             <link rel="preconnect" href="https://fonts.gstatic.com"/>
-            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600;900&display=swap" rel="stylesheet"/>  
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600;900&display=swap" rel="stylesheet"/>
          </Head>
          <div className="bottom-nav">
             {!headerReduced
@@ -139,6 +142,7 @@ export default function Home() {
             map={mapInstance} 
             controlHeaderReduced={setHeaderReduced}
             setButtonViewDisabled={setButtonViewDisabled}
+            createMarkerAction={createEstadioMarker}
             />
          <div id="map" className="background-map-wrapper"></div>
          <SimpleLoader show={loadingEstadios}/>

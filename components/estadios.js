@@ -13,6 +13,7 @@ import Estadio from './estadio'
 import Loader from './loader'
 import axios from 'axios'
 import useIsLogged from '../components/hooks/isLogged'
+import { useHasLocationPermissions } from '../components/hooks/RequestLocation'
 
 var marker = null;
 
@@ -22,7 +23,8 @@ export default function Estadios({
    controlHeaderReduced, 
    wizardActive, 
    setWizardActive, 
-   setButtonViewDisabled
+   setButtonViewDisabled,
+   createMarkerAction
 }) {
 
    let [isLogged] = useIsLogged();
@@ -36,6 +38,11 @@ export default function Estadios({
    let [nombre, setNombre] = useState(`Estadio ${apellido}`);
    let [apodo, setApodo] = useState('El épico');
    let [saving, setSaving] = useState(false);
+   let [
+      hasPermissions,
+      requestingPermissions,
+      requestPermissions
+   ] = useHasLocationPermissions();
 
    const startWizard = ()=>{
       setupEventForMap();
@@ -59,11 +66,16 @@ export default function Estadios({
 
    const clickMarkerEvent = (e)=>{
       // console.log(e.lngLat);
+      setNewLocation(e.lngLat)
+   }
+
+   const setNewLocation = (lngLat)=>{
+      console.log(lngLat);
       if(marker !== null) marker.remove();
-      setLocation(e.lngLat);
+      setLocation(lngLat);
       marker = new mapboxgl
          .Marker({color: "#ce3f3f"})
-         .setLngLat(e.lngLat)
+         .setLngLat(lngLat)
          .addTo(map);
    }
 
@@ -90,10 +102,29 @@ export default function Estadios({
          .then((res)=>{
             setSaving(false);
             cancelWizard();
+            createMarkerAction(res.data.estadio);
          })
          .catch((err)=>{
             console.log(err);
          });
+   }
+
+   const startWizardWrapper = ()=>{
+      startWizard();
+      requestPermissions((res)=>{
+         if(res){
+            let lnglat = {
+               lng: res.coords.longitude,
+               lat: res.coords.latitude
+            };
+            setNewLocation(lnglat);
+            map.flyTo({
+               zoom: 7,
+               center: lnglat,
+               pitch: 0
+            });
+         }
+      });
    }
 
    return (
@@ -105,7 +136,7 @@ export default function Estadios({
                   user={id} 
                   controlHeaderReduced={controlHeaderReduced} 
                   map={map} 
-                  startWizardAction={startWizard}/>
+                  startWizardAction={startWizardWrapper}/>
             ) : (
                <>
                   

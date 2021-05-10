@@ -11,7 +11,7 @@ export default function handler(req, res){
       
       var db = firebase.firestore();
 
-      db.collection('estadios').doc(`est${req.body.id}`).set({
+      let estadio = {
          id_registro: req.body.id,
          nombre: req.body.nombre,
          seudonimo: req.body.seudonimo,
@@ -19,10 +19,13 @@ export default function handler(req, res){
             latitude: req.body.lat,
             longitude: req.body.long
          }
-      }).then(()=>{
+      }
+
+      db.collection('estadios').doc(`est${req.body.id}`).set(estadio).then((response)=>{
 
          res.send({
-            result: 'ok'
+            result: 'ok',
+            estadio: estadio
          });
 
       }).catch(()=>{

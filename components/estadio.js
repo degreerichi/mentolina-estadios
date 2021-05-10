@@ -31,7 +31,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
    const moveToMyEstadio = ()=>{
       controlHeaderReduced(true);
       map.flyTo({
-         zoom: 8.5,
+         zoom: 10,
          center: [estadioInfo.ubicacion.longitude, estadioInfo.ubicacion.latitude],
          pitch: 0
       });
@@ -60,9 +60,11 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
    }, []);
 
+   // console.log(map);
+
    return (
       <>
-         {loading ? 
+         {loading || map === null ? 
             <SimpleLoader className="mt-5" show={true} inline={true}/> : (
                Object.keys(estadioInfo).length === 0 ? (
                   <>
