@@ -5,11 +5,14 @@ import firebase from "firebase/app"
 import "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import * as Facebook from 'fb-sdk-wrapper'
 
 export default function Estadio({user, controlHeaderReduced, map, startWizardAction}) {
 
    let [loading, setLoading] = useState(false);
    let [estadioInfo, setEstadioInfo] = useState({});
+   let [sharingEstadio, setSharingEstadio] = useState(false);
 
    const loadEstadioInfo = ()=>{
       return new Promise((resolve, reject)=>{
@@ -29,12 +32,15 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
    }
 
    const moveToMyEstadio = ()=>{
+
       controlHeaderReduced(true);
+
       map.flyTo({
          zoom: 10,
          center: [estadioInfo.ubicacion.longitude, estadioInfo.ubicacion.latitude],
          pitch: 0
       });
+
    }
 
    const deleteEstadio = ()=>{
@@ -48,6 +54,21 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
       }).catch((err)=>{
          console.log(err);
       });
+
+   }
+
+   const shareEstadio = ()=>{
+
+      setSharingEstadio(true);
+
+      Facebook.ui({
+         method: 'share',
+         href: '/share',
+         quote: 'Creé mi estadio en https://micasamiestadio.com'
+      }, function(response){
+         console.log(response);
+      });
+
    }
 
    useEffect(()=>{
@@ -72,7 +93,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
                      <a href="#!" className="button mt-3" onClick={startWizardAction}>Agregar estadio</a>
                   </>
                ) : (
-                  <div className="mt-5">
+                  <div className="mt-3">
                      <h1 className="text-center mb-3 text-white">Tu estadio</h1>
                      <div className="estadio-wrapper mt-2">
                         <div className="estadion-img">
@@ -87,6 +108,15 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
                            </div>
                            {/* <span className="direccion">Direccion</span> */}
                         </div>
+                     </div>
+                     <div className="estadio-share">
+                        {sharingEstadio ? (
+                           <SimpleLoader show={true} inline={true} size="2x"/>
+                        ) : (
+                           <button onClick={shareEstadio}>
+                              <FontAwesomeIcon icon={faFacebookF} size="lg"/> Compartir estadio
+                           </button>
+                        )}
                      </div>
                   </div>
 

@@ -67,3 +67,24 @@
       }
    }
 }
+
+.estadio-share {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 50px;
+   button {
+      border: none;
+      border-radius: $border-radius;
+      padding: $size-base * 2 $size-base * 4 $size-base * 2 $size-base * 4;
+      font-family: $main-font;
+      font-size: 1.2rem;
+      background-color: #4267B2;
+      color: white;
+      &:hover {
+         background-color: white;
+         color: #4267B2;
+      }
+   }
+}
