@@ -7,8 +7,8 @@ export default function Share() {
          <Head>
             <meta property="og:url" content="https://micasamiestadio.com/share"/>
             <meta property="og:type" content="website"/>
-            <meta property="og:title" content="Your Website Title"/>
-            <meta property="og:description" content="Your description"/>
+            <meta property="og:title" content="Micasamiestadio"/>
+            <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
             <meta property="og:image" content="https://dummyimage.com/vga"/>
             <meta property="fb:app_id" content="827394434550474"/>
          </Head>
