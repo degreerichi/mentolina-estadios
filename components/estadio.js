@@ -63,7 +63,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
       Facebook.ui({
          method: 'share',
-         href: '/share',
+         href: 'https://micasamiestadio.com/share',
          quote: 'Creé mi estadio en https://micasamiestadio.com'
       }, function(response){
          console.log(response);

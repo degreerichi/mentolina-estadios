@@ -1,7 +1,7 @@
 import firebaseConfig from '../../components/firebaseconfig'
 import firebase from "firebase/app"
 import "firebase/firestore"
-import s3config from '../../compoments/s3config'
+import s3config from '../../components/s3config'
 import S3 from 'aws-s3';
 
 export default function handler(req, res){
