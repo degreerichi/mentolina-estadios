@@ -12,7 +12,9 @@ export default function Share() {
             <meta property="og:image" content="https://dummyimage.com/vga"/>
             <meta property="fb:app_id" content="827394434550474"/>
          </Head>
-         <img src="https://dummyimage.com/vga" alt="" />
+         <div className="share-image-wrapper">
+            <img src="https://dummyimage.com/vga" alt="" />
+         </div>
       </>
    )
 }
