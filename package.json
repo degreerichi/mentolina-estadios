@@ -16,10 +16,10 @@
     "aws-s3": "^2.0.5",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
-    "canvas": "^2.7.0",
+    "canvas": "^2.6.1",
     "cookies": "^0.8.0",
     "fb-sdk-wrapper": "^1.1.0",
-    "firebase": "^8.3.2",
+    "firebase": "^8.6.0",
     "google-auth-library": "^7.0.4",
     "gsap": "^3.6.1",
     "mapbox-gl": "^2.2.0",
@@ -31,9 +31,9 @@
     "react-google-login": "^5.2.2",
     "react-social-login-buttons": "^3.4.0",
     "react-validation": "^3.0.7",
-    "validator": "^13.5.2"
+    "validator": "^13.6.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^3.0.3"
+    "@netlify/plugin-nextjs": "^3.2.2"
   }
 }
