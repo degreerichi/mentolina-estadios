@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "now-build": "cp canvas_lib64/*so.1 node_modules/canvas/build/Release/"
+    "build": "next build cp canvas_lib64/*so.1 node_modules/canvas/build/Release/",
+    "start": "next start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
