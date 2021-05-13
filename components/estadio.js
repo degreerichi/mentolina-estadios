@@ -134,16 +134,16 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
                               <SimpleLoader show={true} inline={true} size="2x"/>
                            </>
                         ) : (
-                           <>
+                           <div className="d-flex flex-column justify-content-center align-items-center">
                               {shareUrl !== '' ? (
-                                 <>
-                                    ¡Gracias por compartir tu estadio!
-                                 </>
+                                 <div className="mb-3">
+                                    <h4 className="text-white">¡Gracias por compartir tu estadio!</h4>
+                                 </div>
                               ) : ''}
                               <button onClick={shareEstadio}>
                                  <FontAwesomeIcon icon={faFacebookF} size="lg"/> Compartir estadio
                               </button>
-                           </>
+                           </div>
                         )}
                      </div>
                   </div>
