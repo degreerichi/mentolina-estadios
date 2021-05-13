@@ -14,6 +14,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
    let [loading, setLoading] = useState(false);
    let [estadioInfo, setEstadioInfo] = useState({});
    let [sharingEstadio, setSharingEstadio] = useState(false);
+   let [shareUrl, setShareUrl] = useState('');
 
    const loadEstadioInfo = ()=>{
       return new Promise((resolve, reject)=>{
@@ -62,10 +63,12 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
       setSharingEstadio(true);
 
-      axios.post('/upload', {
+      axios.post('api/upload', {
          id: user,
          apellido: apellido
       }).then((res)=>{
+
+         setShareUrl(`https://micasamiestadio.com/share?url=${res.data.s3url}&apellido=${apellido}`);
 
          Facebook.ui({
             method: 'share',
@@ -77,9 +80,13 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
       }).catch((err)=>{
 
-      });
+         console.log(err);
 
-      
+      }).finally(()=>{
+
+         setSharingEstadio(false);
+
+      });
 
    }
 
@@ -123,11 +130,20 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
                      </div>
                      <div className="estadio-share">
                         {sharingEstadio ? (
-                           <SimpleLoader show={true} inline={true} size="2x"/>
+                           <>
+                              <SimpleLoader show={true} inline={true} size="2x"/>
+                           </>
                         ) : (
-                           <button onClick={shareEstadio}>
-                              <FontAwesomeIcon icon={faFacebookF} size="lg"/> Compartir estadio
-                           </button>
+                           <>
+                              {shareUrl !== '' ? (
+                                 <>
+                                    ¡Gracias por compartir tu estadio!
+                                 </>
+                              ) : ''}
+                              <button onClick={shareEstadio}>
+                                 <FontAwesomeIcon icon={faFacebookF} size="lg"/> Compartir estadio
+                              </button>
+                           </>
                         )}
                      </div>
                   </div>
