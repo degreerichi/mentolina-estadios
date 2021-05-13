@@ -1,11 +1,10 @@
 import firebaseConfig from '../../components/firebaseconfig'
 import firebase from "firebase/app"
 import "firebase/firestore"
-import s3config from '../../components/s3config'
-import S3 from 'aws-s3'
 import { createCanvas, loadImage, registerFont }  from 'canvas'
-import * as fs from 'fs';
 import path from 'path'
+import fs from 'fs'
+import { uploadFile } from '../../components/s3'
 
 registerFont(path.resolve('./public/fonts/MonumentExtended-Regular.ttf'), {
    family: 'monument',
@@ -18,16 +17,33 @@ export default function handler(req, res){
 
       if(firebase.apps.length === 0)
          firebase.initializeApp(firebaseConfig);
+
+      if(!req.body.id) res.send(400);
+      if(!req.body.apellido) res.send(400);
       
       var db = firebase.firestore();
+      
+      const filename = `img-${req.body.id}-${new Date().getTime()}.png`;
+      const tempNewImageLocation = `public/media/${filename}`;
+      const templateFile = 'public/media/base.jpg';
 
-      const S3Client = new S3(s3config);
+      const returnData = {
+         id: req.body.id,
+         apellido: req.body.apellido,
+         s3url: '',
+         s3key: ''
+      }
 
-      const newFileName = 'mentolina';
+      // const s3client = new S3Client({
+      //    accessKeyId: s3config.accessKeyId,
+      //    secretAccessKey: s3config.secretAccessKey,
+      //    region: s3config.region,
+      // });
 
+      // load the base image
+      loadImage(templateFile).then((image) => {
 
-      loadImage('public/media/base.jpg').then((image) => {
-
+         // create the image
          const canvas = createCanvas(1000, 1000);
          const ctx = canvas.getContext('2d');
 
@@ -35,47 +51,68 @@ export default function handler(req, res){
          ctx.fillStyle = '#00ff54';
          ctx.textAlign = "center";
          ctx.font = 'italic normal 700 100px 1.1 monument';
-         ctx.fillText('VALLADARES', 490, 760);
+         ctx.fillText(req.body.apellido.toUpperCase(), 490, 760);
 
-         const out = fs.createWriteStream('public/media/test.png')
+         // save the image
+         const out = fs.createWriteStream(tempNewImageLocation);
          const stream = canvas.createPNGStream();
-         stream.pipe(out)
-         out.on('finish', () =>  console.log('The PNG file was created.'));
-         // canvas.toDataURL();
+         stream.pipe(out);
+
+         out.on('finish', ()=>{
+            
+            console.log('The image was created.');
+
+            uploadFile(tempNewImageLocation, filename).then((response)=>{
+
+               console.log('The image was uploaded.');
+
+               const imagen = {
+                  id_registro: req.body.id,
+                  nombre: filename,
+                  s3url: response.Location,
+                  s3key: response.Key,
+                  s3bucket: response.Bucket,
+                  apellido: req.body.apellido
+               }
+
+               returnData.s3url = response.Location;
+               returnData.s3key = response.Key;
+
+               return db.collection('imagenes').doc(`img${req.body.id}`).set(imagen);
+
+               // res.send({
+               //    result: 'success',
+               //    message: 'File succesfully uploaded.',
+               //    response: response
+               // });
+
+            }).then((response)=>{
+
+               res.send({
+                  result: 'ok',
+                  data: returnData
+               });
+
+            }).catch((err)=>{
+
+               console.log('The file coud not be uploaded');
+
+               res.send({
+                  result: 'error',
+                  message: 'Error al guardar el archivo.',
+                  response: err
+               });
+               
+            });
+
+         });
 
       });
-
-      // var loadedImage;
-
-      // Jimp.read('public/media/base.jpg').then(img => {
-      //    loadedImage = img;
-      //    return Jimp.loadFont(Jimp.FONT_SANS_16_BLACK);
-      // }).then((font)=>{
-      //    loadedImage.print(font, 180, 750, 'Hello world!');
-      //    loadedImage.write('public/media/base-writed.jpg'); // save
-      // }).catch((err)=>{
-      //    console.log(err);
-      // });
-
-      res.send({
-         result: 'image',
-         message: 'proceso completado, no se sabe de la imagen'
-      });
-
-      // S3Client
-      //    .uploadFile(file, newFileName)
-      //    .then(data => console.log(data))
-      //    .catch(err => console.error(err))
-
-      // let image = {
-      //    id_registro: req.body.id,
-      //    tipo: 'imagen_compartida',
-      //    s3_key: '',
-      //    s3_location: ''
-      // }
 
    }else{
+
       res.status(404);
+
    }
 
 }

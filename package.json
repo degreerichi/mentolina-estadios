@@ -13,7 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@mapbox/mapbox-gl-geocoder": "^4.7.0",
-    "aws-s3": "^2.0.5",
+    "aws-sdk": "^2.906.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "canvas": "^2.6.1",

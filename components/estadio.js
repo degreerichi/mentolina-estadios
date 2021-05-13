@@ -7,8 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import * as Facebook from 'fb-sdk-wrapper'
+import axios from 'axios'
 
-export default function Estadio({user, controlHeaderReduced, map, startWizardAction}) {
+export default function Estadio({user, controlHeaderReduced, map, startWizardAction, apellido}) {
 
    let [loading, setLoading] = useState(false);
    let [estadioInfo, setEstadioInfo] = useState({});
@@ -61,13 +62,24 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
       setSharingEstadio(true);
 
-      Facebook.ui({
-         method: 'share',
-         href: 'https://micasamiestadio.com/share',
-         quote: 'Creé mi estadio en https://micasamiestadio.com'
-      }, function(response){
-         console.log(response);
+      axios.post('/upload', {
+         id: user,
+         apellido: apellido
+      }).then((res)=>{
+
+         Facebook.ui({
+            method: 'share',
+            href: `https://micasamiestadio.com/share?url=${res.data.s3url}&apellido=${apellido}`,
+            quote: 'Creé mi estadio en https://micasamiestadio.com'
+         }, function(response){
+            console.log(response);
+         });
+
+      }).catch((err)=>{
+
       });
+
+      
 
    }
 

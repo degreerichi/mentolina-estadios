@@ -136,7 +136,8 @@ export default function Estadios({
                   user={id} 
                   controlHeaderReduced={controlHeaderReduced} 
                   map={map} 
-                  startWizardAction={startWizardWrapper}/>
+                  startWizardAction={startWizardWrapper}
+                  apellido={apellido}/>
             ) : (
                <>
                   
