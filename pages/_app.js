@@ -1,4 +1,4 @@
-require('sharp');
+import { createCanvas, loadImage, registerFont }  from 'canvas'
 import '../styles/globals.scss'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css' // Import the CSS

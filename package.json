@@ -17,12 +17,9 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "canvas": "^2.6.1",
-    "child_process": "^1.0.2",
     "cookies": "^0.8.0",
     "fb-sdk-wrapper": "^1.1.0",
-    "file-system": "^2.2.2",
     "firebase": "^8.6.0",
-    "fs": "0.0.1-security",
     "google-auth-library": "^7.0.4",
     "gsap": "^3.6.1",
     "mapbox-gl": "^2.2.0",
@@ -34,7 +31,6 @@
     "react-google-login": "^5.2.2",
     "react-social-login-buttons": "^3.4.0",
     "react-validation": "^3.0.7",
-    "sharp": "^0.28.2",
     "validator": "^13.6.0"
   },
   "devDependencies": {
