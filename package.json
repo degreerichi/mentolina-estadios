@@ -31,6 +31,7 @@
     "react-google-login": "^5.2.2",
     "react-social-login-buttons": "^3.4.0",
     "react-validation": "^3.0.7",
+    "sharp": "^0.28.2",
     "validator": "^13.6.0"
   },
   "devDependencies": {

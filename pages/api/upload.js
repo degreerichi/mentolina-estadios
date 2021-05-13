@@ -1,7 +1,7 @@
+import { createCanvas, loadImage, registerFont }  from 'canvas'
 import firebaseConfig from '../../components/firebaseconfig'
 import firebase from "firebase/app"
 import "firebase/firestore"
-import { createCanvas, loadImage, registerFont }  from 'canvas'
 import path from 'path'
 import fs from 'fs'
 import { uploadFile } from '../../components/s3'
