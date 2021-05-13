@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "now-build": "cp /vercel/path0/cp/canvas_lib64/*so.1 /vercel/path0/cp/node_modules/canvas/build/Release/"
+    "now-build": "cp canvas_lib64/*so.1 node_modules/canvas/build/Release/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
