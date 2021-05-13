@@ -149,7 +149,13 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   <source src="/media/video/video.mp4" type="video/mp4"/>
                </video>
             </div>
-            <img className="mi-casa-logo mentolina-after" src="/media/mi-casa-logo-test.svg" alt=""/>
+            {!isLogged ? (
+               <>
+                  <img className="lata-mentolina" src="/media/lata-seleccion.png" alt="" />
+                  <h4 className="mb-3 text-white"><i>PRESENTA</i></h4>
+               </>
+            ) : ''}
+            <img className="mi-casa-logo" src="/media/mi-casa-logo.svg" alt=""/>
             {
                isLogged ? (
                   <Estadios 
@@ -160,7 +166,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                      setWizardActive={setWizardActive}
                      setButtonViewDisabled={setButtonViewDisabled}
                      createMarkerAction={createMarkerAction}/>
-               ) : (!headerReduced ? <a href="#!" className="button mt-4" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a> : '')}
+               ) : (!headerReduced ? <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a> : '')}
             {/* <a href="#!" className="button mt-2" onClick={zoomIn}><i className="fas fa-plus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={zoomOut}><i className="fas fa-minus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={toggleHeaderReduced}><i className="fas fa-toggle-on"></i></a> */}
