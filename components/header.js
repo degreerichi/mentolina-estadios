@@ -146,7 +146,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          <div className={`the-heading ${headerReduced ? 'reduced' : ''}`}>
             <div className="header-background-video-wrapper">
                <video className="header-background-video" autoPlay muted loop poster="/media/video/video-placeholder.jpg">
-                  <source src="/media/video/video.mp4" type="video/mp4"/>
+                  <source src="/media/video/fondo-nuevo.mp4" type="video/mp4"/>
                </video>
             </div>
             {!isLogged ? (
