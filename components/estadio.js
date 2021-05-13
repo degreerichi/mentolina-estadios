@@ -75,7 +75,9 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
             href: `https://micasamiestadio.com/share?url=${res.data.s3url}&apellido=${apellido}`,
             quote: 'Creé mi estadio en https://micasamiestadio.com'
          }, function(response){
+
             console.log(response);
+            
          });
 
       }).catch((err)=>{
