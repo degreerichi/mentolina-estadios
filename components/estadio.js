@@ -77,7 +77,10 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
             href: `https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`,
             quote: `Creé mi estadio en https://micasamiestadio.com`,
             hashtag: '#micasamiestadio'
-         }, function(){
+         }, function(response){
+            if (response && response.error_message) {
+               setShareUrl('');
+            }
             setSharingEstadio(false);
          });
 
