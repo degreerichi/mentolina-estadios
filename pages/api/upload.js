@@ -23,9 +23,13 @@ export default function handler(req, res){
       
       var db = firebase.firestore();
       
+      console.error('ledirname');
+      console.error(__dirname);
+
       const filename = `img-${req.body.id}-${new Date().getTime()}.png`;
-      const tempNewImageLocation = `public/media/${filename}`;
-      const templateFile = 'public/media/base.jpg';
+      const tempNewImageLocation = `${__dirname}public/media/${filename}`;
+      const templateFile = __dirname + 'public/media/base.jpg';
+
 
       const returnData = {
          id: req.body.id,
