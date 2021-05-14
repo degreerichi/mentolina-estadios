@@ -73,19 +73,17 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
          setShareUrl(`https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`);
 
          Facebook.ui({
-            display: 'popup',
             method: 'share',
+            display: 'popup',
             href: `https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`,
             quote: `Creé mi estadio en https://micasamiestadio.com`,
             hashtag: '#micasamiestadio'
          }, (response)=>{
-            if(response && response.error_message){
-               setShareUrl('');
-            }
+            if(response && response.error_message) setShareUrl('');
             console.log('facebook response');
             console.log(response);
-            setSharingEstadio(false);
          });
+         setSharingEstadio(false);
 
       // }).catch((err)=>{
 
