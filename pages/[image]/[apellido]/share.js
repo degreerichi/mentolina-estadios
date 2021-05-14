@@ -1,11 +1,16 @@
 import React from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 
-export default function Share() {
+export async function getServerSideProps(context) {
+  return {
+    props: {
+       image: context.params.image,
+       apellido: context.params.apellido
+    }
+  }
+}
 
-   const router = useRouter();
-   const { image, apellido } = router.query;
+export default function Share({ image, apellido }) {
 
    return (
       <>
