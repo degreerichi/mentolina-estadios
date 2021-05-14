@@ -44,10 +44,10 @@ export default function handler(req, res){
       loadImage(templateFile).then((image) => {
 
          // create the image
-         const canvas = createCanvas(1000, 1000);
+         const canvas = createCanvas(800, 800);
          const ctx = canvas.getContext('2d');
 
-         ctx.drawImage(image, 0, 0, 1000, 1000);
+         ctx.drawImage(image, 0, 0, 800, 800);
          ctx.fillStyle = '#00ff54';
          ctx.textAlign = "center";
          ctx.font = 'italic normal 700 100px 1.1 monument';

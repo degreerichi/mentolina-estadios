@@ -20,8 +20,8 @@ export default function Share({ image }) {
             <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
             <meta property="og:image" content={`https://mi-casa-mi-estadio.s3.us-east-2.amazonaws.com/${image}`}/>
             <meta property="og:image:url" content={`https://mi-casa-mi-estadio.s3.us-east-2.amazonaws.com/${image}`}/>
-            <meta property="og:image:width" content="1000"/>
-            <meta property="og:image:height" content="1000"/>
+            <meta property="og:image:width" content="800"/>
+            <meta property="og:image:height" content="800"/>
             <meta property="fb:app_id" content="827394434550474"/>
          </Head>
          <div className="share-image-wrapper">
