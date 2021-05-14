@@ -75,7 +75,8 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
          Facebook.ui({
             method: 'share',
             href: `https://micasamiestadio.com/${res.data.data.s3key}/share`,
-            quote: `Creé mi estadio en https://micasamiestadio.com/${res.data.data.s3key}/share`
+            quote: `Creé mi estadio en https://micasamiestadio.com/${res.data.data.s3key}/share`,
+            hashtag: '#micasamiestadio'
          }, function(response){
             console.log(response);
          });
