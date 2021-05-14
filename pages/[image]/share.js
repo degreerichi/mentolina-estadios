@@ -9,7 +9,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Share({ image, apellido }) {
+export default function Share({ image }) {
 
    return (
       <>
@@ -18,11 +18,11 @@ export default function Share({ image, apellido }) {
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Micasamiestadio"/>
             <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
-            <meta property="og:image" content={image}/>
+            <meta property="og:image" content={`https://mi-casa-mi-estadio.s3.us-east-2.amazonaws.com/${image}`}/>
             <meta property="fb:app_id" content="827394434550474"/>
          </Head>
          <div className="share-image-wrapper">
-            <img src={image} alt="" />
+            <img src={`https://mi-casa-mi-estadio.s3.us-east-2.amazonaws.com/${image}`} alt="" />
          </div>
       </>
    )
