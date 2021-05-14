@@ -143,9 +143,9 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
                                     <h4 className="text-white">¡Gracias por compartir tu estadio!</h4>
                                  </div>
                               ) : ''}
-                              <button onClick={shareEstadio}>
+                              <a className="btn-estadio-share" href="#!" target="_top" onClick={shareEstadio}>
                                  <FontAwesomeIcon icon={faFacebookF} size="lg"/> Compartir estadio
-                              </button>
+                              </a>
                            </div>
                         )}
                      </div>

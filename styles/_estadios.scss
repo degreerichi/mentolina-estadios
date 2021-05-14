@@ -77,7 +77,7 @@
    @include media-breakpoint-down(sm) {
       margin-top: 30px;
    }
-   button {
+   .btn-estadio-share {
       border: none;
       border-radius: $border-radius;
       padding: $size-base * 2 $size-base * 4 $size-base * 2 $size-base * 4;
@@ -85,11 +85,13 @@
       font-size: 1.2rem;
       background-color: #4267B2;
       color: white;
+      text-decoration: none;
       @include media-breakpoint-down(sm) {
          padding: $size-base * 1.5 $size-base * 3 $size-base * 1.5 $size-base * 3;
          font-size: 0.9rem;
       }
       &:hover {
+         text-decoration: none;
          background-color: white;
          color: #4267B2;
       }
