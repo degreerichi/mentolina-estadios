@@ -4,7 +4,7 @@ import firebase from "firebase/app"
 import "firebase/firestore"
 import path from 'path'
 import fs from 'fs'
-import { uploadFile } from '../../components/s3'
+import { uploadFileBase64 } from '../../components/s3'
 
 registerFont(path.resolve('./public/fonts/MonumentExtended-Regular.ttf'), {
    family: 'monument',
@@ -24,7 +24,7 @@ export default function handler(req, res){
       var db = firebase.firestore();
 
       const filename = `img-${req.body.id}-${new Date().getTime()}.png`;
-      const tempNewImageLocation = `public/media/${filename}`;
+      // const tempNewImageLocation = `public/media/${filename}`;
       const templateFile = "https://www.micasamiestadio.com/media/base.jpg";
 
       const returnData = {
@@ -54,15 +54,15 @@ export default function handler(req, res){
          ctx.fillText(req.body.apellido.toUpperCase(), 490, 760);
 
          // save the image
-         const out = fs.createWriteStream(tempNewImageLocation);
-         const stream = canvas.createPNGStream();
-         stream.pipe(out);
+         // const out = fs.createWriteStream(tempNewImageLocation);
+         // const stream = canvas.createPNGStream();
+         // stream.pipe(out);
 
-         out.on('finish', ()=>{
+         // out.on('finish', ()=>{
             
             console.log('The image was created.');
 
-            uploadFile(tempNewImageLocation, filename).then((response)=>{
+            uploadFileBase64(canvas.toDataURL("image/png"), filename).then((response)=>{
 
                console.log('The image was uploaded.');
 
@@ -105,7 +105,7 @@ export default function handler(req, res){
                
             });
 
-         });
+         // });
 
       });
 
