@@ -155,12 +155,12 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   <h4 className="mb-3 text-white"><i>PRESENTA</i></h4>
                </>
             ) : ''}
+            {!isLogged ? (
+                  <img className="infarma-logo" src="/media/infarma-logo.svg" alt="" />
+               ) : ''}
             {headerReduced ? (
                <>
                   <img className="mentolina-logo" src="/media/lata-seleccion.png" alt="" />
-                  {!isLogged ? (
-                     <img className="infarma-logo" src="/media/infarma-logo.svg" alt="" />
-                  ) : ''}
                </>
             ) : ''}
             <img className="mi-casa-logo" src="/media/mi-casa-logo.svg" alt=""/>

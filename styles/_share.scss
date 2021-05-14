@@ -1,0 +1,39 @@
+.share-image-wrapper {
+   width: 100%;
+   // padding: $size-base * 2;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   img {
+      max-width: 600px;
+   }
+}
+.share-container {
+   .share-image-logo-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a {
+         display: block;
+         width: 600px;
+         .share-main-logo {
+            width: 100%;
+         }
+      }
+   }
+}
+
+.share-footer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   padding: $size-base * 6;
+   font-family: $main-font;
+   a {
+      width: 300px;
+      img {
+         width: 100%;
+      }
+   }
+}

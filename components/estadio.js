@@ -38,7 +38,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
       controlHeaderReduced(true);
 
       map.flyTo({
-         zoom: 10,
+         zoom: 15,
          center: [estadioInfo.ubicacion.longitude, estadioInfo.ubicacion.latitude],
          pitch: 0
       });
@@ -70,12 +70,12 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
          console.log(res);
 
-         setShareUrl(`https://micasamiestadio.com/${res.data.data.s3key}/share`);
+         setShareUrl(`https://micasamiestadio.com/${user}/share`);
 
          Facebook.ui({
             method: 'share',
-            href: `https://micasamiestadio.com/${res.data.data.s3key}/share`,
-            quote: `Creé mi estadio en https://micasamiestadio.com/${res.data.data.s3key}/share`,
+            href: `https://micasamiestadio.com/${user}/share`,
+            quote: `Creé mi estadio en https://micasamiestadio.com/${user}/share`,
             hashtag: '#micasamiestadio'
          }, function(response){
             console.log(response);

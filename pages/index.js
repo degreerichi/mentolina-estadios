@@ -12,6 +12,16 @@ import "firebase/firestore"
 
 var map;
 
+export async function getServerSideProps(context) {
+  
+  return {
+    props: {
+       lng: context.query.lng !== undefined ? context.query.lng : null,
+       lat: context.query.lat !== undefined ? context.query.lat : null
+    }
+  }
+}
+
 // var locations = [
 //    [-87.2866837, 14.284429],
 //    [-87.1971197, 14.084288],
@@ -19,11 +29,14 @@ var map;
 //    [-88.2475647, 14.926786]
 // ];
 
-export default function Home() {
+export default function Home({lng, lat}) {
 
-   let [isLogged, checkingLogged] = useIsLogged();
+   // const router = useRouter();
+   // const { lng, lat } = router.query;
+   
+   // let [isLogged, checkingLogged] = useIsLogged();
 
-   let headingRef = useRef();
+   // let headingRef = useRef();
    let [headerReduced, setHeaderReduced] = useState(false);
    let [buttonViewDisabled, setButtonViewDisabled] = useState(false);
    let [mapInstance, setMapInstance] = useState(null);
@@ -40,12 +53,34 @@ export default function Home() {
          container: 'map',
          style: 'mapbox://styles/ogilvyhn/ckn4w7ba5023n17qz53gzncbj'
       });
+
       map.on('load', function() {
+         
          setMapInstance(map);
          getEstadios(map);
+
+         // console.log(router.query);
+         console.log({lng, lat});
+
+         if(lng !== null && lat !== null)
+            viewLocationInMap(lng, lat);
+
       });
+
       // firebase.analytics();
    }, []);
+
+   const viewLocationInMap = (longitude, latitude)=>{
+
+      toggleHeaderReduced(false);
+
+      map.flyTo({
+         zoom: 15,
+         center: [longitude, latitude],
+         pitch: 0
+      });
+
+   }
 
    const getEstadios = (map)=>{
 
@@ -111,15 +146,17 @@ export default function Home() {
          // map.setCenter([-86.153, 14.847]);
          // map.setZoom(6.5);
          map.flyTo({
-            zoom: 7,
+            zoom: 8,
             center: [-86.153, 14.847],
             pitch: 0
          });
       }
    }
 
-   const toggleHeaderReduced = ()=>{
-      !headerReduced ? zoomOut() : resetZoomAndLocation();
+   const toggleHeaderReduced = (movingmap = true)=>{
+      if(movingmap){
+         !headerReduced ? zoomOut() : resetZoomAndLocation();
+      }
       setHeaderReduced(!headerReduced);
    }
 

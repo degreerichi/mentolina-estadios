@@ -56,9 +56,9 @@
          align-items: flex-start;
       }
       .mi-casa-logo {
-         width: 150px;
+         width: 240px;
          @include media-breakpoint-down(sm) {
-            width: 120px;
+            width: 150px;
          }
       }
       .header-background-video-wrapper {
@@ -96,5 +96,29 @@
    width: 200px;
    @include media-breakpoint-down(sm) {
       width: 120px;
+   }
+}
+
+.infarma-logo {
+   position: fixed;
+   top: 0;
+   right: 0;
+   width: auto;
+   height: $nav-height - ($size-base * 8);
+   margin: $size-base * 4;
+   @include media-breakpoint-down(sm) {
+      height: $nav-height - ($size-base * 10);
+      margin: $size-base * 4;
+   }
+}
+
+.mentolina-logo-share {
+   position: fixed;
+   top: 0;
+   left: 0;
+   max-width: 100px;
+   margin: $size-base;
+   @include media-breakpoint-down(sm) {
+      display: none;
    }
 }
