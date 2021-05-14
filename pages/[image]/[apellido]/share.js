@@ -5,19 +5,20 @@ import { useRouter } from 'next/router'
 export default function Share() {
 
    const router = useRouter();
+   const { image, apellido } = router.query;
 
    return (
       <>
          <Head>
-            <meta property="og:url" content={`https://micasamiestadio.com/share?url=${router.query.url}&apellido=${router.query.apellido}`}/>
+            <meta property="og:url" content={`https://micasamiestadio.com/${image}/${apellido}/share`}/>
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Micasamiestadio"/>
             <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
-            <meta property="og:image" content={router.query.url}/>
+            <meta property="og:image" content={image}/>
             <meta property="fb:app_id" content="827394434550474"/>
          </Head>
          <div className="share-image-wrapper">
-            <img src={router.query.url} alt="" />
+            <img src={image} alt="" />
          </div>
       </>
    )
