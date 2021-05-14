@@ -51,7 +51,7 @@ export default function handler(req, res){
          ctx.fillStyle = '#00ff54';
          ctx.textAlign = "center";
          ctx.font = 'italic normal 700 100px 1.1 monument';
-         ctx.fillText(req.body.apellido.toUpperCase(), 490, 760);
+         ctx.fillText(req.body.apellido.toUpperCase(), 400, 600);
 
          // save the image
          // const out = fs.createWriteStream(tempNewImageLocation);
