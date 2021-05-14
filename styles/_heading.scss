@@ -12,6 +12,28 @@
    align-items: center;
    padding: $size-base * 3;
    background-color: rgba(0, 0, 0, 0.3);
+   .mentolina-logo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      max-width: 100px;
+      margin: $size-base;
+      @include media-breakpoint-down(sm) {
+         display: none;
+      }
+   }
+   .infarma-logo {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: auto;
+      height: $nav-height - ($size-base * 8);
+      margin: $size-base * 4;
+      @include media-breakpoint-down(sm) {
+         height: $nav-height - ($size-base * 10);
+         margin: $size-base * 4;
+      }
+   }
    .mi-casa-logo {
       width: 50vw;
       position: relative;

@@ -149,10 +149,18 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   <source src="/media/video/fondo-nuevo.mp4" type="video/mp4"/>
                </video>
             </div>
-            {!isLogged ? (
+            {!isLogged && !headerReduced ? (
                <>
                   <img className="lata-mentolina" src="/media/lata-seleccion.png" alt="" />
                   <h4 className="mb-3 text-white"><i>PRESENTA</i></h4>
+               </>
+            ) : ''}
+            {headerReduced ? (
+               <>
+                  <img className="mentolina-logo" src="/media/lata-seleccion.png" alt="" />
+                  {!isLogged ? (
+                     <img className="infarma-logo" src="/media/infarma-logo.svg" alt="" />
+                  ) : ''}
                </>
             ) : ''}
             <img className="mi-casa-logo" src="/media/mi-casa-logo.svg" alt=""/>
