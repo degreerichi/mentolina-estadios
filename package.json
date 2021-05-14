@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/ && yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel",
+    "build": "next build && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/ && dnf install zlib",
     "start": "next start"
   },
   "dependencies": {
