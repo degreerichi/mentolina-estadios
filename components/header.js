@@ -145,7 +145,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          <Usernav user={userData} actions={[{text: "Cerrar Sesión", action: logout}]}/>
          <div className={`the-heading ${headerReduced ? 'reduced' : ''}`}>
             <div className="header-background-video-wrapper">
-               <video className="header-background-video" autoPlay muted loop poster="/media/video/video-placeholder.jpg">
+               <video className="header-background-video" autoPlay muted loop poster="/media/video/fondo-nuevo-placeholder.jpg">
                   <source src="/media/video/fondo-nuevo.mp4" type="video/mp4"/>
                </video>
             </div>
