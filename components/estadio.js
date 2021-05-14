@@ -73,6 +73,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
          setShareUrl(`https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`);
 
          Facebook.ui({
+            display: 'popup',
             method: 'share',
             href: `https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`,
             quote: `Creé mi estadio en https://micasamiestadio.com`,
