@@ -4,8 +4,7 @@ import Head from 'next/head'
 export async function getServerSideProps(context) {
   return {
     props: {
-       image: context.params.image,
-       apellido: context.params.apellido
+       image: context.params.image
     }
   }
 }
@@ -15,7 +14,7 @@ export default function Share({ image, apellido }) {
    return (
       <>
          <Head>
-            <meta property="og:url" content={`https://micasamiestadio.com/${image}/${apellido}/share`}/>
+            <meta property="og:url" content={`https://micasamiestadio.com/${image}/share`}/>
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Micasamiestadio"/>
             <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>

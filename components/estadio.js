@@ -70,12 +70,12 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
          console.log(res);
 
-         setShareUrl(`https://micasamiestadio.com/${encodeURIComponent(res.data.data.s3url)}/${apellido}/share`);
+         setShareUrl(`https://micasamiestadio.com/${encodeURIComponent(res.data.data.s3url)}/share`);
 
          Facebook.ui({
             method: 'share',
-            href: `https://micasamiestadio.com/${encodeURIComponent(res.data.data.s3url)}/${apellido}/share`,
-            quote: `Creé mi estadio en https://micasamiestadio.com/${encodeURIComponent(res.data.data.s3url)}/${apellido}/share`
+            href: `https://micasamiestadio.com/${encodeURIComponent(res.data.data.s3url)}/share`,
+            quote: `Creé mi estadio en https://micasamiestadio.com/${encodeURIComponent(res.data.data.s3url)}/share`
          }, function(response){
             console.log(response);
          });
