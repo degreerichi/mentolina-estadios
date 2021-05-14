@@ -10,24 +10,23 @@ import { faFutbol } from '@fortawesome/free-solid-svg-icons'
 export async function getServerSideProps(context) {
 
    if(firebase.apps.length === 0)
-         firebase.initializeApp(firebaseConfig);
-
+      firebase.initializeApp(firebaseConfig);
    
    var db = firebase.firestore();
 
-  var estadio = await db.collection('estadios').doc(`est${context.params.user}`).get();
-  var imagen = await db.collection('imagenes').doc(`img${context.params.user}`).get();
-  var user = await db.collection('registros').doc(`id${context.params.user}`).get();
+   var estadio = await db.collection('estadios').doc(`est${context.params.user}`).get();
+   var imagen = await db.collection('imagenes').doc(`img${context.params.user}`).get();
+   var user = await db.collection('registros').doc(`id${context.params.user}`).get();
 
-  console.log(estadio.data());
-  
-  return {
-    props: {
-       estadio: JSON.stringify(estadio.data()),
-       imagen: JSON.stringify(imagen.data()),
-       user: JSON.stringify(user.data())
-    }
-  }
+   console.log(estadio.data());
+
+   return {
+      props: {
+         estadio: JSON.stringify(estadio.data()),
+         imagen: JSON.stringify(imagen.data()),
+         user: JSON.stringify(user.data())
+      }
+   }
 }
 
 export default function Share({ estadio, imagen, user }) {

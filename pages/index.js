@@ -167,6 +167,15 @@ export default function Home({lng, lat}) {
             {/* <script src="https://kit.fontawesome.com/fdb97cba60.js" crossOrigin="anonymous"></script> */}
             <link rel="preconnect" href="https://fonts.gstatic.com"/>
             <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600;900&display=swap" rel="stylesheet"/>
+            <meta property="og:url" content={`https://micasamiestadio.com`}/>
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="Mi Casa Mi Estadio"/>
+            <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
+            <meta property="og:image" content='/media/post.png'/>
+            <meta property="og:image:url" content='/media/post.png'/>
+            <meta property="og:image:width" content="1000"/>
+            <meta property="og:image:height" content="1000"/>
+            <meta property="fb:app_id" content="827394434550474"/>
          </Head>
          <div className="bottom-nav">
             {!headerReduced

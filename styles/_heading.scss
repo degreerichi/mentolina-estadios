@@ -12,6 +12,9 @@
    align-items: center;
    padding: $size-base * 3;
    background-color: rgba(0, 0, 0, 0.3);
+   @include media-breakpoint-down(sm) {
+      padding-bottom: 100px;
+   }
    .mentolina-logo {
       position: fixed;
       top: 0;

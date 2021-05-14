@@ -63,33 +63,33 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
 
       setSharingEstadio(true);
 
-      axios.post('api/upload', {
-         id: user,
-         apellido: apellido
-      }).then((res)=>{
+      // axios.post('api/upload', {
+      //    id: user,
+      //    apellido: apellido
+      // }).then((res)=>{
 
-         console.log(res);
+         // console.log(res);
 
-         setShareUrl(`https://micasamiestadio.com/${user}/share`);
+         setShareUrl(`https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`);
 
          Facebook.ui({
             method: 'share',
-            href: `https://micasamiestadio.com/${user}/share`,
-            quote: `Creé mi estadio en https://micasamiestadio.com/${user}/share`,
+            href: `https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`,
+            quote: `Creé mi estadio en https://micasamiestadio.com`,
             hashtag: '#micasamiestadio'
          }, function(response){
             console.log(response);
          });
 
-      }).catch((err)=>{
+      // }).catch((err)=>{
 
-         console.log(err);
+      //    console.log(err);
 
-      }).finally(()=>{
+      // }).finally(()=>{
 
-         setSharingEstadio(false);
+      //    setSharingEstadio(false);
 
-      });
+      // });
 
    }
 
