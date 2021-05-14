@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/ && apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev",
+    "build": "next build && cp canvas_lib64/*so.1 node_modules/canvas/build/Release/ && yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel",
     "start": "next start"
   },
   "dependencies": {
