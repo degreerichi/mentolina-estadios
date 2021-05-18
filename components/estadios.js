@@ -49,7 +49,7 @@ export default function Estadios({
       setWizardActive(true);
       controlHeaderReduced(true);
       setButtonViewDisabled(true);
-      setNombre(`Estadio ${apellido}`);
+      setNombre(`${apellido}`);
       setApodo('El épico');
    }
 
@@ -95,7 +95,7 @@ export default function Estadios({
       axios.post('api/add', {
          id: id,
          nombre: nombre,
-         seudonimo: apodo,
+         prefijo: 'Estadio',
          lat: location.lat,
          long: location.lng
       })
@@ -152,27 +152,32 @@ export default function Estadios({
             <a href="#!" className="button small background-blue" onClick={cancelWizard}>Cancelar <FontAwesomeIcon icon={faTimes}/></a>
          </div>
          <Modal modalOpened={locationSelected} toggleModalAction={cancelWizard}>
-            <h5 className="mb-3">Confirme la información de su estadio</h5>
+            <h3 className="mb-4">Crear estadio</h3>
             <Form onSubmit={submitHandler}>
-               <label htmlFor="exampleInputEmail1">Ubicación</label>
-               <div className="row mb-2">
-                  <div className="col">
-                     <label htmlFor="exampleInputEmail1">Latitud</label>
-                     <Input type="text" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
+               {/* <label htmlFor="exampleInputEmail1">Ubicación</label> */}
+               {/* <div className="row mb-2"> */}
+                  {/* <div className="col"> */}
+                     {/* <label htmlFor="exampleInputEmail1">Latitud</label> */}
+                     <Input type="hidden" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
                         validations={[required]}/>
+                  {/* </div> */}
+                  {/* <div className="col"> */}
+                     {/* <label htmlFor="exampleInputEmail1">Longitud</label> */}
+                     <Input type="hidden" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
+                        validations={[required]}/>
+                  {/* </div> */}
+               {/* </div> */}
+               <h5 htmlFor="exampleInputEmail1" className="mb-4">Nombre del Estadio</h5>
+               <div className="row mb-4">
+                  <div className="col-4 d-flex justify-content-center align-items-center">
+                     <h5 className="d-block">Estadio</h5>
                   </div>
-                  <div className="col">
-                     <label htmlFor="exampleInputEmail1">Longitud</label>
-                     <Input type="text" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
+                  <div className="col-8">
+                     <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e)=>{setNombre(e.target.value)}}
                         validations={[required]}/>
                   </div>
                </div>
-               <div className="form-group w-100">
-                  <label htmlFor="exampleInputEmail1">Nombre del Estadio</label>
-                  <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e)=>{setNombre(e.target.value)}}
-                     validations={[required]}/>
-               </div>
-               <div className="form-group w-100">
+               {/* <div className="form-group w-100">
                   <label htmlFor="exampleInputEmail1">Apodo</label>
                   <Select name="apodo" className="form-control" id="exampleFormControlSelect1"
                      validations={[required]} value={apodo} onChange={(e)=>{setApodo(e.target.value)}}>
@@ -188,7 +193,7 @@ export default function Estadios({
                      <option value="El de Ronaldiño">El de Ronaldiño</option>
                      <option value="La leyenda">La leyenda</option>
                   </Select>
-               </div>
+               </div> */}
                <Button type="submit" className="button">Guardar</Button>
             </Form>
          </Modal>

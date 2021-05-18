@@ -126,8 +126,8 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
                            <img src="/media/estadio-icon.svg" alt=""/>
                         </div>
                         <div className="estadio-text ml-2">
-                           <h5 className="nombre">{estadioInfo !== null ? estadioInfo.nombre : ''}</h5>
-                           <h5 className="apodo">{estadioInfo !== null ? estadioInfo.seudonimo : ''}</h5>
+                           <h5 className="nombre">{estadioInfo !== null ? (estadioInfo.prefijo !== undefined ? estadioInfo.prefijo : (estadioInfo.seudonimo !== undefined ? estadioInfo.seudonimo : '')) : ''}</h5>
+                           <h5 className="apodo">{estadioInfo !== null ? estadioInfo.nombre : ''}</h5>
                            <div className="estadio-text-actions">
                               <button className="button small mt-2 mr-2" onClick={moveToMyEstadio}>Ver <FontAwesomeIcon icon={faEye}/></button>
                               <button className="button small mt-2" onClick={deleteEstadio}><FontAwesomeIcon icon={faTimes}/></button>

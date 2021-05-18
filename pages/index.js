@@ -118,12 +118,19 @@ export default function Home({lng, lat}) {
       img.src = '/media/estadio-icon.svg';
       el.appendChild(img);
 
+      var textoArriba = estadio.seudonimo !== undefined ? estadio.nombre : (
+         estadio.prefijo !== undefined ? estadio.prefijo : ''
+      );
+      var textoAbajo = estadio.seudonimo !== undefined ? estadio.seudonimo : (
+         estadio.nombre
+      );
+
       var popup = new mapboxgl.Popup({
          offset: 25, 
          closeOnMove: true,
          className: 'marker-popup'
       }).setText(
-         `${estadio.nombre}, ${estadio.seudonimo}`
+         `${textoArriba} ${textoAbajo}`
       );
 
       new mapboxgl.Marker({
@@ -171,8 +178,8 @@ export default function Home({lng, lat}) {
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Mi Casa Mi Estadio"/>
             <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
-            <meta property="og:image" content='/media/post.png'/>
-            <meta property="og:image:url" content='/media/post.png'/>
+            <meta property="og:image" content='/media/share-v2.jpg'/>
+            <meta property="og:image:url" content='/media/share-v2.jpg'/>
             <meta property="og:image:width" content="1000"/>
             <meta property="og:image:height" content="1000"/>
             <meta property="fb:app_id" content="827394434550474"/>

@@ -14,7 +14,7 @@ export default function handler(req, res){
       let estadio = {
          id_registro: req.body.id,
          nombre: req.body.nombre,
-         seudonimo: req.body.seudonimo,
+         prefijo: req.body.prefijo,
          ubicacion: {
             latitude: req.body.lat,
             longitude: req.body.long
