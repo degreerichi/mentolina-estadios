@@ -24,7 +24,8 @@
    display: flex;
    flex-direction: row;
    color: white;
-   align-items: flex-start;
+   align-items: center;
+   justify-content: center;
    font-family: $main-font;
    @include media-breakpoint-down(sm) {
       flex-direction: column;

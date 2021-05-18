@@ -42,8 +42,8 @@ export default function Share({ estadio, imagen, user }) {
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Micasamiestadio"/>
             <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
-            <meta property="og:image" content='/media/post.png'/>
-            <meta property="og:image:url" content='/media/post.png'/>
+            <meta property="og:image" content='/media/share-v2.jpg'/>
+            <meta property="og:image:url" content='/media/share-v2.jpg'/>
             <meta property="og:image:width" content="1000"/>
             <meta property="og:image:height" content="1000"/>
             <meta property="fb:app_id" content="827394434550474"/>
