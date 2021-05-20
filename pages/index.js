@@ -3,12 +3,13 @@ import Head from 'next/head'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import Header from '../components/header'
 import SimpleLoader from '../components/simpleLoader'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useIsLogged from '../components/hooks/isLogged'
-import { faExpandArrowsAlt, faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExpandArrowsAlt, faCompressArrowsAlt, faTrophy, faFileContract } from '@fortawesome/free-solid-svg-icons'
 import firebaseConfig from '../components/firebaseconfig'
 import firebase from "firebase/app"
 import "firebase/firestore"
+import Modal from '../components/modal'
 
 var map;
 
@@ -42,6 +43,8 @@ export default function Home({lng, lat}) {
    let [mapInstance, setMapInstance] = useState(null);
    let [estadios, setEstadios] = useState([]);
    let [loadingEstadios, setLoadingEstadios] = useState(false);
+   let [modalEstadiosOpened, setModalEstadiosOpened] = useState(false);
+   let [modalTerminosCondiciones, setModalTerminosCondiciones] = useState(false);
 
    useEffect(()=>{
 
@@ -167,6 +170,13 @@ export default function Home({lng, lat}) {
       setHeaderReduced(!headerReduced);
    }
 
+   const toggleModalPremios = ()=>{
+      setModalEstadiosOpened(!modalEstadiosOpened);
+   }
+   const toggleModalTerminosCondiciones = ()=>{
+      setModalTerminosCondiciones(!modalTerminosCondiciones);
+   }
+
    return (
       <>
          <Head>
@@ -196,10 +206,39 @@ export default function Home({lng, lat}) {
             controlHeaderReduced={setHeaderReduced}
             setButtonViewDisabled={setButtonViewDisabled}
             createMarkerAction={createEstadioMarker}
+            cantidadEstadios={estadios.length}
             />
          <div id="map" className="background-map-wrapper"></div>
          <SimpleLoader show={loadingEstadios}/>
+         <a href="#!" className="right-button premios" onClick={toggleModalPremios}><FontAwesomeIcon icon={faTrophy}/></a>
+         <a href="#!" className="right-button terminos" onClick={toggleModalTerminosCondiciones}><FontAwesomeIcon icon={faFileContract}/></a>
          <img className="mentolina-logo" src="/media/mentolina-logo-test.png" alt=""/>
+         <Modal modalOpened={modalEstadiosOpened} toggleModalAction={toggleModalPremios} smallwidth={false}>
+            <h2 className="text-center mb-4">Premios</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque officiis ad consequatur omnis, molestias voluptatibus harum modi nostrum rem fugit. Voluptatem, totam. Commodi vel blanditiis dicta maxime doloribus. Eligendi, quis.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque officiis ad consequatur omnis, molestias voluptatibus harum modi nostrum rem fugit. Voluptatem, totam. Commodi vel blanditiis dicta maxime doloribus. Eligendi, quis.</p>
+            {/* <div className="row">
+               <div className="col-4">
+                  <img className="w-100" src="/media/post.jpg" alt="" />
+               </div>
+               <div className="col-8">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio earum, architecto laudantium ducimus assumenda possimus, corporis suscipit deserunt vero maxime minima laborum cumque, sunt aperiam saepe esse quaerat. Doloribus, saepe.
+               </div>
+            </div> */}
+         </Modal>
+         <Modal modalOpened={modalTerminosCondiciones} toggleModalAction={toggleModalTerminosCondiciones} smallwidth={false}>
+            <h2 className="text-center mb-4">Términos y condiciones</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id at accusantium corporis veritatis, ipsum saepe consectetur autem minima quaerat aspernatur, consequuntur nobis tempora recusandae voluptatum quos perspiciatis voluptate accusamus illum.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id at accusantium corporis veritatis, ipsum saepe consectetur autem minima quaerat aspernatur, consequuntur nobis tempora recusandae voluptatum quos perspiciatis voluptate accusamus illum.</p>
+            {/* <div className="row">
+               <div className="col-4">
+                  <img className="w-100" src="/media/post.jpg" alt="" />
+               </div>
+               <div className="col-8">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio earum, architecto laudantium ducimus assumenda possimus, corporis suscipit deserunt vero maxime minima laborum cumque, sunt aperiam saepe esse quaerat. Doloribus, saepe.
+               </div>
+            </div> */}
+         </Modal>
       </>
    )
 }

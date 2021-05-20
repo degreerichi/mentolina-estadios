@@ -14,7 +14,7 @@ import { faFutbol } from '@fortawesome/free-solid-svg-icons'
 import useIsLogged from '../components/hooks/isLogged'
 import * as Facebook from 'fb-sdk-wrapper'
 
-export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled, className, createMarkerAction}) {
+export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled, className, createMarkerAction, cantidadEstadios}) {
 
    const router = useRouter();
 
@@ -174,7 +174,12 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                      setWizardActive={setWizardActive}
                      setButtonViewDisabled={setButtonViewDisabled}
                      createMarkerAction={createMarkerAction}/>
-               ) : (!headerReduced ? <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a> : '')}
+               ) : (!headerReduced ? (
+                  <>
+                     <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a>
+                     <div className="estadios-counter text-center"><span className="estadios-number">{cantidadEstadios > 0 ? cantidadEstadios : '-'}</span> <br /> Estadios registrados</div>
+                  </>
+               ) : '')}
             {/* <a href="#!" className="button mt-2" onClick={zoomIn}><i className="fas fa-plus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={zoomOut}><i className="fas fa-minus"></i></a> */}
             {/* <a href="#!" className="button mt-2" onClick={toggleHeaderReduced}><i className="fas fa-toggle-on"></i></a> */}

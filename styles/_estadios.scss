@@ -98,3 +98,45 @@
       }
    }
 }
+
+.estadios-counter {
+   font-family: $main-font;
+   color: white;
+   margin-top: 15px;
+   .estadios-number {
+      font-size: 2rem;
+      color: map-get($colors, orange-light)
+   }
+}
+
+.right-button {
+   position: fixed;
+   right: $size-base * 4;
+   z-index: $z-index-max;
+   display: block;
+   padding: $size-base * 2;
+   background-color: map-get($colors, orange);
+   border-radius: $border-radius;
+   color: white;
+   width: 40px;
+   text-align: center;
+   &:hover {
+      text-decoration: none;
+      background-color: white;
+      color: map-get($colors, orange);
+   }
+   &.terminos {
+      bottom: 130px;
+      @include media-breakpoint-down(sm) {
+         right: $size-base * 3;
+         bottom: 60px;
+      }
+   }
+   &.premios {
+      bottom: 180px;
+      @include media-breakpoint-down(sm) {
+         right: $size-base * 3;
+         bottom: 110px;
+      }
+   }
+}
