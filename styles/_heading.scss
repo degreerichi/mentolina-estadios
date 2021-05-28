@@ -57,6 +57,7 @@
       @include media-breakpoint-down(sm) {
          height: $nav-height * 0.8;
          align-items: flex-start;
+         padding-bottom: $size-base * 3;
       }
       .mi-casa-logo {
          width: 240px;

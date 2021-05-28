@@ -166,14 +166,19 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
             <img className="mi-casa-logo" src="/media/mi-casa-logo.svg" alt=""/>
             {
                isLogged ? (
-                  <Estadios 
-                     map={map}
-                     reduced={headerReduced} 
-                     controlHeaderReduced={controlHeaderReduced} 
-                     wizardActive={wizardActive} 
-                     setWizardActive={setWizardActive}
-                     setButtonViewDisabled={setButtonViewDisabled}
-                     createMarkerAction={createMarkerAction}/>
+                  <>
+                     <Estadios 
+                        map={map}
+                        reduced={headerReduced} 
+                        controlHeaderReduced={controlHeaderReduced} 
+                        wizardActive={wizardActive} 
+                        setWizardActive={setWizardActive}
+                        setButtonViewDisabled={setButtonViewDisabled}
+                        createMarkerAction={createMarkerAction}/>
+                     {!headerReduced ? (
+                        <div className="estadios-counter text-center"><span className="estadios-number">{cantidadEstadios > 0 ? cantidadEstadios : '-'}</span> <br /> Estadios registrados</div>
+                     ) : ''}
+                  </>
                ) : (!headerReduced ? (
                   <>
                      <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a>
