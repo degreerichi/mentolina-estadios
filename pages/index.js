@@ -202,7 +202,7 @@ export default function Home({lng, lat}) {
          <Header 
             className="position-relative"
             headerReduced={headerReduced}
-            map={mapInstance} 
+            map={mapInstance}
             controlHeaderReduced={setHeaderReduced}
             setButtonViewDisabled={setButtonViewDisabled}
             createMarkerAction={createEstadioMarker}
@@ -212,11 +212,20 @@ export default function Home({lng, lat}) {
          <SimpleLoader show={loadingEstadios}/>
          <a href="#!" className="right-button premios" onClick={toggleModalPremios}><FontAwesomeIcon icon={faTrophy}/></a>
          <a href="#!" className="right-button terminos" onClick={toggleModalTerminosCondiciones}><FontAwesomeIcon icon={faFileContract}/></a>
-         <img className="mentolina-logo" src="/media/mentolina-logo-test.png" alt=""/>
+         <img className="mentolina-logo" src="/media/hashtag-logo-mentolina.png" alt=""/>
          <Modal modalOpened={modalEstadiosOpened} toggleModalAction={toggleModalPremios} smallwidth={false}>
-            <h2 className="text-center mb-4">Premios</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque officiis ad consequatur omnis, molestias voluptatibus harum modi nostrum rem fugit. Voluptatem, totam. Commodi vel blanditiis dicta maxime doloribus. Eligendi, quis.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque officiis ad consequatur omnis, molestias voluptatibus harum modi nostrum rem fugit. Voluptatem, totam. Commodi vel blanditiis dicta maxime doloribus. Eligendi, quis.</p>
+            <h1 className="text-center mb-4">Premios</h1>
+            <div className="row">
+               <div className="col-12 col-md-4">
+                  <img className="img-fluid" src="/media/premios/camisa.png" alt="" />
+               </div>
+               <div className="col-12 col-md-4">
+                  <img className="img-fluid" src="/media/premios/parrillada.png" alt="" />
+               </div>
+               <div className="col-12 col-md-4">
+                  <img className="img-fluid" src="/media/premios/televisor.png" alt="" />
+               </div>
+            </div>
             {/* <div className="row">
                <div className="col-4">
                   <img className="w-100" src="/media/post.jpg" alt="" />
@@ -227,9 +236,8 @@ export default function Home({lng, lat}) {
             </div> */}
          </Modal>
          <Modal modalOpened={modalTerminosCondiciones} toggleModalAction={toggleModalTerminosCondiciones} smallwidth={false}>
-            <h2 className="text-center mb-4">Términos y condiciones</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id at accusantium corporis veritatis, ipsum saepe consectetur autem minima quaerat aspernatur, consequuntur nobis tempora recusandae voluptatum quos perspiciatis voluptate accusamus illum.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id at accusantium corporis veritatis, ipsum saepe consectetur autem minima quaerat aspernatur, consequuntur nobis tempora recusandae voluptatum quos perspiciatis voluptate accusamus illum.</p>
+            <h1 className="text-center mb-4">Términos y condiciones</h1>
+            
             {/* <div className="row">
                <div className="col-4">
                   <img className="w-100" src="/media/post.jpg" alt="" />

@@ -169,9 +169,9 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   <>
                      <Estadios 
                         map={map}
-                        reduced={headerReduced} 
-                        controlHeaderReduced={controlHeaderReduced} 
-                        wizardActive={wizardActive} 
+                        reduced={headerReduced}
+                        controlHeaderReduced={controlHeaderReduced}
+                        wizardActive={wizardActive}
                         setWizardActive={setWizardActive}
                         setButtonViewDisabled={setButtonViewDisabled}
                         createMarkerAction={createMarkerAction}/>
