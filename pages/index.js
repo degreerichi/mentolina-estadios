@@ -236,16 +236,58 @@ export default function Home({lng, lat}) {
             </div> */}
          </Modal>
          <Modal modalOpened={modalTerminosCondiciones} toggleModalAction={toggleModalTerminosCondiciones} smallwidth={false}>
-            <h1 className="text-center mb-4">Términos y condiciones</h1>
-            
-            {/* <div className="row">
-               <div className="col-4">
-                  <img className="w-100" src="/media/post.jpg" alt="" />
-               </div>
-               <div className="col-8">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio earum, architecto laudantium ducimus assumenda possimus, corporis suscipit deserunt vero maxime minima laborum cumque, sunt aperiam saepe esse quaerat. Doloribus, saepe.
-               </div>
-            </div> */}
+            <div className="container terminos">
+               <h1 className="text-center mb-4">Términos y condiciones</h1>
+               <h4 className="my-2">Vigencia del concurso:</h4>
+               <p>Del 26 de mayo 2021 – 15 de noviembre 2021</p>
+
+               <p>Concurso válido únicamente para: Honduras.</p>
+               <h4 className="my-2">Requisitos:</h4>
+               <ul>
+                  <li>Residir en Honduras.</li>
+                  <li>Ser mayor de 18 años.</li>
+                  <li>Ser seguidor de INDUSTRIA FARMACÉUTICA S.A. (INFARMA) en la plataforma social de Facebook.</li>
+                  <li>La información se validará a través de los agentes de marca INDUSTRIA FARMACÉUTICA S.A. (INFARMA).</li>
+                  <li>Los participantes que califiquen con los términos previos deberán seguir las instrucciones de la dinámica de Mi Casa – Mi Estadio.</li>
+               </ul>
+
+               <h4 className="my-2">Dinámica:</h4>
+               <h5 className="my-2"><b>PARA EL GRAN PREMIO</b></h5>
+               <p>El concursante deberá compartir sus datos y crear su estadio en el sitio web Mi Casa – Mi Estadio y estará participando. Otras acciones que el participante puede realizar es compartir el post de forma pública en su perfil de Facebook.</p>
+               <p><b>Premio:</b></p>
+               <p>Televisores HD para disfrutar de la Selección (12 Televisores (especificación del televisor))</p>
+
+               <h5 className="my-2">PARA OTROS PREMIOS | DINÁMICAS</h5>
+               <p>El concursante deberá seguir todos los pasos estipulados en la dinámica en la cual esté participando dentro del contenido Mi Casa – Mi Estadio). El concursante debe ser seguidor de la red social de INDUSTRIA FARMACÉUTICA S.A. (INFARMA) en la que esté participando, ya sea Facebook o Instagram. </p>
+               <p><b>Otros premios:</b></p>
+               <ul>
+                  <li>3 parrilladas para 6 personas (por partido)</li>
+                  <li>Camisetas de la Selección Nacional de Honduras (verificar cantidad de ganadores)</li>
+               </ul>
+
+               <h5 className="my-2">Reclamo de Premio:</h5>
+               <p>El premio será entregado el día estipulado por los representantes de INDUSTRIA FARMACÉUTICA S.A. (INFARMA), los cuales se pondrán en contacto con el ganador y el premio será entregado a la fecha y hora indicada.</p>
+               <p>Solo el ganador puede reclamar su premio presentando un documento de identificación válido. </p>
+               <p>INDUSTRIA FARMACÉUTICA S.A. (INFARMA) reserva el derecho de realizar las modificaciones o anexos sobre la mecánica, vigencia y premios de Mi Casa – Mi Estadio.</p>
+
+               <h4 className="my-2">Ganadores:</h4>
+               <p>Los ganadores serán seleccionados por los agentes de marca de INDUSTRIA FARMACÉUTICA S.A. (INFARMA), según los términos y restricciones del concurso. </p>
+               <h4 className="my-2">Restricciones del concurso:</h4>
+               <ol>
+                  <li>Al participar, de forma automática el participante acepta los términos y condiciones.</li>
+                  <li>Al participar en la dinámica, se le otorga de manera automática la autorización a INDUSTRIA FARMACÉUTICA S.A. (INFARMA) para poder usar su información y el participante acepta que INDUSTRIA FARMACÉUTICA S.A. (INFARMA) no tienen ninguna obligación legal en proporcionar una compensación monetaria por el uso de su imagen ya sea en fotografías, videos y multimedia. </li>
+                  <li>El premio no podrá ser canjeado por otro producto o dinero en efectivo.</li>
+                  <li>El participante deberá contestar el mensaje enviado a través de su Facebook o las llamadas realizadas por representantes de la marca INDUSTRIA FARMACÉUTICA S.A. (INFARMA) en el tiempo indicado y presentarse con su identificación en la hora, fecha y lugar que INDUSTRIA FARMACÉUTICA S.A. (INFARMA) confirme. De lo contrario, el premio no se le entregará y será otorgado a otro participante que cumpla con los requisitos. </li>
+                  <li>El participante que ganó la dinámica será la única persona que pueda reclamar el premio. </li>
+               </ol>
+               
+               <h4 className="my-2">Anexos:</h4>
+               <ol>
+                  <li>INDUSTRIA FARMACÉUTICA S.A. (INFARMA) se reserva el derecho de realizar modificaciones o anexos sobre la mecánica, vigencia y premios siempre que estén justificados, no perjudiquen a los participantes o ganadores, y sean comunicados a estos debidamente por este medio.</li>
+                  <li>Facebook no avala, patrocina ni administra de manera alguna esta promoción, ni se encuentra asociado con ella.</li>
+               </ol>
+         
+            </div>            
          </Modal>
       </>
    )
