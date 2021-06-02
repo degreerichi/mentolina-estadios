@@ -196,6 +196,15 @@ export default function Home({lng, lat}) {
             <title>Mi Casa Mi Estadio</title>
             <meta name="description" content="Creá tu estadio desde tu propia casa y apoyá a la H en Mi Casa Mi Estadio" />
             <meta name="keywords" content="estadio,lah,conla12enelpecho,Honduras,mentolina,infarma,H" />
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFH68VKKRS"></script>
+            <script dangerouslySetInnerHTML={{
+               __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-ZFH68VKKRS');
+               `
+            }}/>
          </Head>
          <div className="bottom-nav">
             {!headerReduced
