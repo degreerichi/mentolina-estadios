@@ -77,7 +77,7 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
             display: 'popup',
             href: `https://micasamiestadio.com/?lng=${estadioInfo.ubicacion.longitude}&lat=${estadioInfo.ubicacion.latitude}`,
             quote: `Creé mi estadio en https://micasamiestadio.com`,
-            hashtag: '#micasamiestadio'
+            hashtag: '#ConLa12EnElPecho'
          }, (response)=>{
             if(response && response.error_message) setShareUrl('');
             console.log('facebook response');
