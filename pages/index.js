@@ -193,6 +193,9 @@ export default function Home({lng, lat}) {
             <meta property="og:image:width" content="1000"/>
             <meta property="og:image:height" content="1000"/>
             <meta property="fb:app_id" content="827394434550474"/>
+            <title>Mi Casa Mi Estadio</title>
+            <meta name="description" content="Creá tu estadio desde tu propia casa y apoyá a la H en Mi Casa Mi Estadio" />
+            <meta name="keywords" content="estadio,lah,conla12enelpecho,Honduras,mentolina,infarma,H" />
          </Head>
          <div className="bottom-nav">
             {!headerReduced
