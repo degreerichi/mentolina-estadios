@@ -267,7 +267,7 @@ export default function Home({lng, lat}) {
                <h5 className="my-2"><b>PARA EL GRAN PREMIO</b></h5>
                <p>El concursante deberá compartir sus datos y crear su estadio en el sitio web Mi Casa – Mi Estadio y estará participando. Otras acciones que el participante puede realizar es compartir el post de forma pública en su perfil de Facebook.</p>
                <p><b>Premio:</b></p>
-               <p>Televisores HD para disfrutar de la Selección.</p>
+               <p>Televisores HD para disfrutar los partidos de la Selección.</p>
 
                <h5 className="my-2">PARA OTROS PREMIOS | DINÁMICAS</h5>
                <p>El concursante deberá seguir todos los pasos estipulados en la dinámica en la cual esté participando dentro del contenido Mi Casa – Mi Estadio). El concursante debe ser seguidor de la red social de INDUSTRIA FARMACÉUTICA S.A. (INFARMA) en la que esté participando, ya sea Facebook o Instagram. </p>
