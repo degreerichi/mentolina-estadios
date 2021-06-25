@@ -1,5 +1,7 @@
 @import '../node_modules/mapbox-gl/dist/mapbox-gl.css';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 @import 'reset';
 @import 'settings';
@@ -61,5 +63,22 @@ p {
    @include media-breakpoint-down(sm) {
       max-width: 150px;
       margin-bottom: $size-base * 3;
+   }
+}
+
+.cintillo {
+   position: fixed;
+   z-index: $z-index-max;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 40%;
+   @include media-breakpoint-down(sm) {
+      left: 45%;
+      width: 80%;
+      bottom: $size-base * 10;
+   }
+   .cintillo-image-part {
+      width: 100%;
    }
 }

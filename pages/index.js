@@ -10,6 +10,7 @@ import firebaseConfig from '../components/firebaseconfig'
 import firebase from "firebase/app"
 import "firebase/firestore"
 import Modal from '../components/modal'
+import Slider from "react-slick"
 
 var map;
 
@@ -45,6 +46,17 @@ export default function Home({lng, lat}) {
    let [loadingEstadios, setLoadingEstadios] = useState(false);
    let [modalEstadiosOpened, setModalEstadiosOpened] = useState(false);
    let [modalTerminosCondiciones, setModalTerminosCondiciones] = useState(false);
+
+   const sliderSettings = {
+      arrows: false,
+      dots: false,
+      infinite: true,
+      autoplay: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplaySpeed: 2500
+    };
 
    useEffect(()=>{
 
@@ -245,6 +257,34 @@ export default function Home({lng, lat}) {
          <a href="#!" className="right-button premios" onClick={toggleModalPremios}><FontAwesomeIcon icon={faTrophy}/></a>
          <a href="#!" className="right-button terminos" onClick={toggleModalTerminosCondiciones}><FontAwesomeIcon icon={faFileContract}/></a>
          <img className="mentolina-logo" src="/media/hashtag-logo-mentolina.png" alt=""/>
+         <div className="cintillo">
+            <Slider {...sliderSettings}>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-1-col-1.png" alt="" />
+               </div>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-1-col-3.png" alt="" />
+               </div>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-1-col-3.png" alt="" />
+               </div>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-1-col-4.png" alt="" />
+               </div>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-2-col-1.png" alt="" />
+               </div>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-2-col-2.png" alt="" />
+               </div>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-2-col-3.png" alt="" />
+               </div>
+               <div className="d-flex flex-row justify-content-center align-items-center">
+                  <img className="cintillo-image-part" src="/media/row-2-col-4.png" alt="" />
+               </div>
+            </Slider>
+         </div>
          <Modal modalOpened={modalEstadiosOpened} toggleModalAction={toggleModalPremios} smallwidth={false}>
             <h1 className="text-center mb-4">Premios</h1>
             <div className="row">
