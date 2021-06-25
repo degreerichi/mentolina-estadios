@@ -151,7 +151,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
             </div>
             {!isLogged && !headerReduced ? (
                <>
-                  <img className="lata-mentolina" src="/media/lata-seleccion.png" alt="" />
+                  <img className="lata-mentolina" src="/media/lata-seleccion-doble.png" alt="" />
                   <h4 className="mb-3 text-white"><i>PRESENTA</i></h4>
                </>
             ) : ''}
