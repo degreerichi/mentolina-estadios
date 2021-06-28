@@ -257,34 +257,37 @@ export default function Home({lng, lat}) {
          <a href="#!" className="right-button premios" onClick={toggleModalPremios}><FontAwesomeIcon icon={faTrophy}/></a>
          <a href="#!" className="right-button terminos" onClick={toggleModalTerminosCondiciones}><FontAwesomeIcon icon={faFileContract}/></a>
          <img className="mentolina-logo" src="/media/hashtag-logo-mentolina.png" alt=""/>
-         <div className="cintillo">
-            <Slider {...sliderSettings}>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-1-col-1.png" alt="" />
-               </div>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-1-col-3.png" alt="" />
-               </div>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-1-col-3.png" alt="" />
-               </div>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-1-col-4.png" alt="" />
-               </div>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-2-col-1.png" alt="" />
-               </div>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-2-col-2.png" alt="" />
-               </div>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-2-col-3.png" alt="" />
-               </div>
-               <div className="d-flex flex-row justify-content-center align-items-center">
-                  <img className="cintillo-image-part" src="/media/row-2-col-4.png" alt="" />
-               </div>
-            </Slider>
-         </div>
+         {!headerReduced ? (
+            <div className="cintillo">
+               <Slider {...sliderSettings}>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-1-col-1.png" alt="" />
+                  </div>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-1-col-3.png" alt="" />
+                  </div>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-1-col-3.png" alt="" />
+                  </div>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-1-col-4.png" alt="" />
+                  </div>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-2-col-1.png" alt="" />
+                  </div>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-2-col-2.png" alt="" />
+                  </div>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-2-col-3.png" alt="" />
+                  </div>
+                  <div className="d-flex flex-row justify-content-center align-items-center">
+                     <img className="cintillo-image-part" src="/media/row-2-col-4.png" alt="" />
+                  </div>
+               </Slider>
+            </div>
+         ) : ''}
+         
          <Modal modalOpened={modalEstadiosOpened} toggleModalAction={toggleModalPremios} smallwidth={false}>
             <h1 className="text-center mb-4">Premios</h1>
             <div className="row">
