@@ -130,7 +130,8 @@ export default function Home({lng, lat}) {
       var el = document.createElement('div');
       el.className = 'marker';
       var img = document.createElement('img');
-      img.src = '/media/estadio-icon.svg';
+      // img.src = '/media/estadio-icon.svg';
+      img.src = '/media/lata-seleccion.png';
       el.appendChild(img);
 
       var textoArriba = estadio.seudonimo !== undefined ? estadio.nombre : (

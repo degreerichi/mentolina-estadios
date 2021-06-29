@@ -160,7 +160,13 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                ) : ''}
             {headerReduced ? (
                <>
-                  <img className="mentolina-logo" src="/media/lata-seleccion.png" alt="" />
+                  <div className="mentolina-logo-wrapper">
+                     <img className="" src="/media/lata-seleccion.png" alt="" />
+                     <img className="" src="/media/mento-sport.png" alt="" />
+                     <img className="" src="/media/mento-seleccion.png" alt="" />
+                  </div>
+                  {/* <img className="mentolina-logo" src="/media/lata-seleccion.png" alt="" />
+                  <img className="mentolina-logo" src="/media/lata-seleccion.png" alt="" /> */}
                </>
             ) : ''}
             <img className="mi-casa-logo" src="/media/mi-casa-logo.svg" alt=""/>
