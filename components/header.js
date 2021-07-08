@@ -187,7 +187,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   </>
                ) : (!headerReduced ? (
                   <>
-                     <a href="#!" className="button mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a>
+                     <a href="#!" className="button big mt-5" onClick={toggleModalRegister}>Registra tu estadio <FontAwesomeIcon icon={faFutbol}/></a>
                      <div className="estadios-counter text-center"><span className="estadios-number">{cantidadEstadios > 0 ? cantidadEstadios : '-'}</span> <br /> Estadios registrados</div>
                   </>
                ) : '')}

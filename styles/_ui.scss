@@ -9,6 +9,10 @@
    color: map-get($colors, white);
    font-family: $main-font;
    z-index: $z-index-max;
+   &.big {
+      font-size: 1.2rem;
+      padding: $size-base * 4 $size-base * 5 $size-base * 4 $size-base * 5;
+   }
    @include media-breakpoint-down(sm) {
       font-size: 0.8rem;
       padding: $size-base * 1.8 $size-base * 2 $size-base * 1.8 $size-base * 2;
