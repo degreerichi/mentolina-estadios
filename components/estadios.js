@@ -97,7 +97,8 @@ export default function Estadios({
          nombre: nombre,
          prefijo: 'Estadio',
          lat: location.lat,
-         long: location.lng
+         long: location.lng,
+         fecha_creacion: Date.now()
       })
          .then((res)=>{
             setSaving(false);

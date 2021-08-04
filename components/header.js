@@ -196,7 +196,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
             {/* <a href="#!" className="button mt-2" onClick={toggleHeaderReduced}><i className="fas fa-toggle-on"></i></a> */}
          </div>
          <Modal modalOpened={modalRegisterOpened} toggleModalAction={toggleModalRegister}>
-            <h2 className="mb-5">Registrate para participar</h2>
+            <h2 className="mb-5">Registrate para participar.</h2>
             <GoogleLogin
                clientId="946992110205-ad22psdeoh529a4806s6rlj4he9hbpmj.apps.googleusercontent.com"
                // secret=glBbrQI_aavwbS25xElecBr7
