@@ -15,6 +15,7 @@ export default function handler(req, res){
          id_registro: req.body.id,
          nombre: req.body.nombre,
          prefijo: req.body.prefijo,
+         fecha_registro: new Date(),
          ubicacion: {
             latitude: req.body.lat,
             longitude: req.body.long
