@@ -5,14 +5,15 @@ import Loader from './loader'
 import Usernav from './usernav'
 import Estadios from './estadios'
 import { USER_DATA }  from './strings'
-import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
+// import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
+import {  GoogleLoginButton } from 'react-social-login-buttons'
 import GoogleLogin from 'react-google-login'
 // import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFutbol } from '@fortawesome/free-solid-svg-icons'
 import useIsLogged from '../components/hooks/isLogged'
-import * as Facebook from 'fb-sdk-wrapper'
+// import * as Facebook from 'fb-sdk-wrapper'
 
 export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled, className, createMarkerAction, cantidadEstadios}) {
 
@@ -27,50 +28,50 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
    let [wizardActive, setWizardActive] = useState(false);
 
    // Facebook stuff
-   let [facebookLoaded, setFacebookLoaded] = useState(false);
+   // let [facebookLoaded, setFacebookLoaded] = useState(false);
 
    const toggleModalRegister = ()=>{
       setModalRegisterOpened(!modalRegisterOpened);
    }
 
-   const facebookLoginCallback = (res)=>{
+   // const facebookLoginCallback = (res)=>{
 
-      Facebook.login({
-         scope: 'public_profile,email',
-      })
-         .then((response) => {
-            if (response.status === 'connected') {
-               console.log('connected');
-               FB.api('/me', {fields: 'name,picture,email'}, function(res) {
-                  let data = {
-                     id: res.id,
-                     name: res.name,
-                     email: res.email,
-                     pic: res.picture.data.url,
-                     platform: 'facebook'
-                  }
-                  register({...data, token: response.authResponse.accessToken});
-                  saveLocalData(data);
-               });
-            } else {
-               console.log('not connected');
-               // not logged in
-            }
-            console.log(response);
-         });
-      // console.log(res);
-      // if(!res.hasOwnProperty('status')){
-      //    let data = {
-      //       id: res.id,
-      //       name: res.name,
-      //       email: res.email,
-      //       pic: res.picture.data.url,
-      //       platform: 'facebook'
-      //    }
-      //    register({...data, token: res.tokenId});
-      //    saveLocalData(data);
-      // }
-   }
+   //    Facebook.login({
+   //       scope: 'public_profile,email',
+   //    })
+   //       .then((response) => {
+   //          if (response.status === 'connected') {
+   //             console.log('connected');
+   //             FB.api('/me', {fields: 'name,picture,email'}, function(res) {
+   //                let data = {
+   //                   id: res.id,
+   //                   name: res.name,
+   //                   email: res.email,
+   //                   pic: res.picture.data.url,
+   //                   platform: 'facebook'
+   //                }
+   //                register({...data, token: response.authResponse.accessToken});
+   //                saveLocalData(data);
+   //             });
+   //          } else {
+   //             console.log('not connected');
+   //             // not logged in
+   //          }
+   //          console.log(response);
+   //       });
+   //    // console.log(res);
+   //    // if(!res.hasOwnProperty('status')){
+   //    //    let data = {
+   //    //       id: res.id,
+   //    //       name: res.name,
+   //    //       email: res.email,
+   //    //       pic: res.picture.data.url,
+   //    //       platform: 'facebook'
+   //    //    }
+   //    //    register({...data, token: res.tokenId});
+   //    //    saveLocalData(data);
+   //    // }
+   // }
 
    const googleLoginCallback = (res)=>{
       // console.log(res);
@@ -130,13 +131,13 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
       // firebase.initializeApp(firebaseConfig);
 
       // facebook stuff
-      Facebook.load()
-         .then(() => {
-            Facebook.init({
-               appId: 827394434550474
-            });
-            setFacebookLoaded(true);
-      });
+      // Facebook.load()
+      //    .then(() => {
+      //       Facebook.init({
+      //          appId: 827394434550474
+      //       });
+      //       setFacebookLoaded(true);
+      // });
 
    }, []);
 
@@ -209,6 +210,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   // <button >This is my custom Google button</button>
                )}
             />
+            {/* Aquí */}
             {/* <FacebookLogin
                appId="827394434550474"
                fields="name,email,picture"
@@ -218,7 +220,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   // <button onClick={renderProps.onClick}>This is my custom FB button</button>
                )}
             /> */}
-            {facebookLoaded ? <FacebookLoginButton onClick={facebookLoginCallback} text="Continuar con Facebook"/> : ''}
+            {/* {facebookLoaded ? <FacebookLoginButton onClick={facebookLoginCallback} text="Continuar con Facebook"/> : ''} */}
             {/* <a href="#!" className="button mb-3">Registrarse con Google</a> */}
             {/* <a href="#!" className="button">Registrarse con Facebook</a> */}
          </Modal>
