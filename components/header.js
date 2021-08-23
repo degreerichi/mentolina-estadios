@@ -210,7 +210,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
                   // <button >This is my custom Google button</button>
                )}
             />
-            {/* Aquí */}
+            {/* Aqui  */}
             {/* <FacebookLogin
                appId="827394434550474"
                fields="name,email,picture"
