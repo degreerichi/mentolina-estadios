@@ -20,6 +20,7 @@ export default function handler(req, res){
          correo: req.body.email,
          pic: req.body.pic,
          fecha_registro: new Date(),
+         phone: req.body.phone,
          plataforma: req.body.platform
       }).then(()=>{
 

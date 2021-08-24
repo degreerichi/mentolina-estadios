@@ -13,6 +13,7 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFutbol } from '@fortawesome/free-solid-svg-icons'
 import useIsLogged from '../components/hooks/isLogged'
+
 // import * as Facebook from 'fb-sdk-wrapper'
 
 export default function Header({headerReduced, map, controlHeaderReduced, setButtonViewDisabled, className, createMarkerAction, cantidadEstadios}) {
@@ -72,7 +73,46 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
    //    //    saveLocalData(data);
    //    // }
    // }
-
+   function FormularioRegistro() {
+      const registerUser = async event => {
+        event.preventDefault()
+        let data = {
+         id: Math.floor(Math.random() * 99999),
+         name: `${event.target.name.value}`,
+         email: event.target.email.value,
+         phone: event.target.phone.value,
+         pic: 'https://drive.google.com/file/d/1p7uJBcIg_QfXndRiKjVV5RYuJ_TucDSB',
+         platform: 'google'
+      }
+      register({...data});
+      saveLocalData(data);
+      //   const res = await fetch('/api/register', {
+      //     body: JSON.stringify({
+      //       name: event.target.name.value
+      //     }),
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     },
+      //     method: 'POST'
+      //   })
+    
+      //   const result = await res.json()
+        // result.user => 'Ada Lovelace'
+      }
+    
+      return (
+        <form class="py-2" onSubmit={registerUser}>
+          <label htmlFor="name">Nombre</label>
+          <input id="name" class="mb-2 form-control" name="name" type="text" autoComplete="name" required />
+          <label htmlFor="name">Teléfono</label>
+          <input id="number" class="mb-2 form-control" name="phone" type="text"  autoComplete="phone" required />
+          <label htmlFor="name">Correo</label>
+          <input id="email" class="mb-2 form-control" name="email" type="email" autoComplete="email" required />
+          {/* <button type="submit">Registrarme</button> */}
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+        </form>
+      )
+    }
    const googleLoginCallback = (res)=>{
       // console.log(res);
       if(!res.hasOwnProperty('error')){
@@ -81,6 +121,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
             name: `${res.profileObj.givenName} ${res.profileObj.familyName}`,
             email: res.profileObj.email,
             pic: res.profileObj.imageUrl,
+            phone: "no disponible",
             platform: 'google'
          }
          register({...data, token: res.tokenId});
@@ -198,6 +239,8 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          </div>
          <Modal modalOpened={modalRegisterOpened} toggleModalAction={toggleModalRegister}>
             <h2 className="mb-5">Registrate para participar.</h2>
+            {<FormularioRegistro/>}
+
             <GoogleLogin
                clientId="946992110205-ad22psdeoh529a4806s6rlj4he9hbpmj.apps.googleusercontent.com"
                // secret=glBbrQI_aavwbS25xElecBr7
@@ -223,6 +266,7 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
             {/* {facebookLoaded ? <FacebookLoginButton onClick={facebookLoginCallback} text="Continuar con Facebook"/> : ''} */}
             {/* <a href="#!" className="button mb-3">Registrarse con Google</a> */}
             {/* <a href="#!" className="button">Registrarse con Facebook</a> */}
+            
          </Modal>
          <Loader show={showPreloader || checkingLogged}/>
       </div>
