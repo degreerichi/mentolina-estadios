@@ -63,7 +63,7 @@ export default function handler(req, res){
 
    if(req.method === "POST"){
 
-      if(req.body.platform === 'google'){
+      if(req.body.platform === 'google' || req.body.platform === 'manualmente'){
          handleGoogleAuthentication(req, res);
       }else if(req.body.platform === 'facebook'){
          handleFacebookAuthentication(req, res);

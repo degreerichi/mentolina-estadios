@@ -81,10 +81,10 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          name: `${event.target.name.value}`,
          email: event.target.email.value,
          phone: event.target.phone.value,
-         pic: 'https://drive.google.com/file/d/1p7uJBcIg_QfXndRiKjVV5RYuJ_TucDSB',
-         platform: 'google'
+         pic: 'https://firebasestorage.googleapis.com/v0/b/mentolina-estadios.appspot.com/o/placeholder%2Fno_picture.jpg?alt=media&token=1d04832d-90d4-43d4-aead-fdb4f827f13f',
+         platform: 'manualmente'
       }
-      register({...data});
+      registerManual({...data});
       saveLocalData(data);
       //   const res = await fetch('/api/register', {
       //     body: JSON.stringify({
@@ -101,15 +101,15 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
       }
     
       return (
-        <form class="py-2" onSubmit={registerUser}>
+        <form className="py-2" onSubmit={registerUser}>
           <label htmlFor="name">Nombre</label>
-          <input id="name" class="mb-2 form-control" name="name" type="text" autoComplete="name" required />
+          <input id="name" className="mb-2 form-control" name="name" type="text" autoComplete="name" required />
           <label htmlFor="name">Teléfono</label>
-          <input id="number" class="mb-2 form-control" name="phone" type="text"  autoComplete="phone" required />
+          <input id="number" className="mb-2 form-control" name="phone" type="text"  autoComplete="phone" required />
           <label htmlFor="name">Correo</label>
-          <input id="email" class="mb-2 form-control" name="email" type="email" autoComplete="email" required />
+          <input id="email" className="mb-2 form-control" name="email" type="email" autoComplete="email" required />
           {/* <button type="submit">Registrarme</button> */}
-          <button type="submit" class="btn btn-primary">Aceptar</button>
+          <button type="submit" className="btn btn-primary">Aceptar</button>
         </form>
       )
     }
@@ -135,6 +135,22 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
       // data: {id, name, email, pic, platform, token}
 
       axios.post('api/register', data).then((res)=>{
+         console.log(res);
+         setShowPreloader(false);
+         setModalRegisterOpened(false);
+         refreshCheck();
+      }).catch((err)=>{
+         console.log(err);
+      });
+
+   }
+
+   const registerManual = (data)=>{
+ 
+      setShowPreloader(true);
+      // data: {id, name, email, pic, platform, token}
+
+      axios.post('api/register_manual', data).then((res)=>{
          console.log(res);
          setShowPreloader(false);
          setModalRegisterOpened(false);

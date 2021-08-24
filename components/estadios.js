@@ -43,7 +43,6 @@ export default function Estadios({
       requestingPermissions,
       requestPermissions
    ] = useHasLocationPermissions();
-
    const startWizard = ()=>{
       setupEventForMap();
       setWizardActive(true);
@@ -91,9 +90,11 @@ export default function Estadios({
    const submitHandler = (e)=>{
       e.preventDefault();
       setSaving(true);
+      
 
       axios.post('api/add', {
-         id: id,
+         // id: userData.id,
+         id: userData.email,
          nombre: nombre,
          prefijo: 'Estadio',
          lat: location.lat,
@@ -127,13 +128,90 @@ export default function Estadios({
          }
       });
    }
-
+   console.log(userData.platform);
+if(userData.platform === 'manualmente'){
    return (
       <>
          {!reduced ? (
             <>
             {isLogged ? (
                <Estadio 
+                  user={userData.email}
+                  // user={id} 
+                  controlHeaderReduced={controlHeaderReduced} 
+                  map={map} 
+                  startWizardAction={startWizardWrapper}
+                  apellido={apellido}/>
+            ) : (
+               <>
+                  
+               </>
+            )}
+            </>
+         ) : ''}
+         <div className={`wizard-nav ${wizardActive ? 'show' : ''}`}>
+            <h5>Selecciona una ubicación</h5>
+            <span className="d-inline-block mb-3">Haz clic en el mapa para ubicar tu estadio</span>
+            <button href="#!" className="button mb-3" disabled={location === null} onClick={()=>{setLocationSelected(true)}}>Seleccionar <FontAwesomeIcon icon={faLocationArrow}/></button>
+            <a href="#!" className="button small background-blue" onClick={cancelWizard}>Cancelar <FontAwesomeIcon icon={faTimes}/></a>
+         </div>
+         <Modal modalOpened={locationSelected} toggleModalAction={cancelWizard}>
+            <h3 className="mb-4">Crear estadio</h3>
+            <Form onSubmit={submitHandler}>
+               {/* <label htmlFor="exampleInputEmail1">Ubicación</label> */}
+               {/* <div className="row mb-2"> */}
+                  {/* <div className="col"> */}
+                     {/* <label htmlFor="exampleInputEmail1">Latitud</label> */}
+                     <Input type="hidden" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
+                        validations={[required]}/>
+                  {/* </div> */}
+                  {/* <div className="col"> */}
+                     {/* <label htmlFor="exampleInputEmail1">Longitud</label> */}
+                     <Input type="hidden" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
+                        validations={[required]}/>
+                  {/* </div> */}
+               {/* </div> */}
+               <h5 htmlFor="exampleInputEmail1" className="mb-4">Nombre del Estadio</h5>
+               <div className="row mb-4">
+                  <div className="col-4 d-flex justify-content-center align-items-center">
+                     <h5 className="d-block">Estadio</h5>
+                  </div>
+                  <div className="col-8">
+                     <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e)=>{setNombre(e.target.value)}}
+                        validations={[required]}/>
+                  </div>
+               </div>
+               {/* <div className="form-group w-100">
+                  <label htmlFor="exampleInputEmail1">Apodo</label>
+                  <Select name="apodo" className="form-control" id="exampleFormControlSelect1"
+                     validations={[required]} value={apodo} onChange={(e)=>{setApodo(e.target.value)}}>
+                     <option value="El epico">El épico</option>
+                     <option value="El sobado">El sobado</option>
+                     <option value="El macizo">El macizo</option>
+                     <option value="El loco">El loco</option>
+                     <option value="El maracanazo">El maracanazo</option>
+                     <option value="El gol de oro">El gol de oro</option>
+                     <option value="El Maradona">El Maradona</option>
+                     <option value="El grande">El grande</option>
+                     <option value="El legendario">El legendario</option>
+                     <option value="El de Ronaldiño">El de Ronaldiño</option>
+                     <option value="La leyenda">La leyenda</option>
+                  </Select>
+               </div> */}
+               <Button type="submit" className="button">Guardar</Button>
+            </Form>
+         </Modal>
+         <Loader show={saving}/>
+      </>
+   )
+}else{
+   return (
+      <>
+         {!reduced ? (
+            <>
+            {isLogged ? (
+               <Estadio 
+                  // user={userData.email}
                   user={id} 
                   controlHeaderReduced={controlHeaderReduced} 
                   map={map} 
@@ -201,4 +279,6 @@ export default function Estadios({
          <Loader show={saving}/>
       </>
    )
+}
+  
 }

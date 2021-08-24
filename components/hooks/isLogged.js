@@ -58,7 +58,7 @@ const checkLoginStatus = ()=>{
 
          var userData = JSON.parse(localStorage.getItem(USER_DATA));
          
-         if(userData.platform === 'google'){
+         if(userData.platform === 'google' || userData.platform === 'manualmente'){
             checkGoogleLoginStatus(userData).then(res => resolve(res)).catch(err => reject(err));
          }else if(userData.platform === 'facebook'){
             checkFacebookLoginStatus(userData).then(res => resolve(res)).catch(err => reject(err));

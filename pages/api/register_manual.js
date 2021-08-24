@@ -13,9 +13,8 @@ export default function handler(req, res){
          firebase.initializeApp(firebaseConfig);
       
       var db = firebase.firestore();
-
-      db.collection('registros').doc(`id${req.body.id}`).set({
-         id: req.body.id,
+      db.collection('registros').doc(`id${req.body.email}`).set({
+         id: "id"+req.body.email,
          nombre: req.body.name,
          correo: req.body.email,
          pic: req.body.pic,
