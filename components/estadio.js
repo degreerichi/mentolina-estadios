@@ -17,7 +17,6 @@ export default function Estadio({user, controlHeaderReduced, map, startWizardAct
    let [shareUrl, setShareUrl] = useState('');
 
    const loadEstadioInfo = ()=>{
-      console.log("user " + user);
       return new Promise((resolve, reject)=>{
          var db = firebase.firestore();
 
