@@ -81,7 +81,9 @@ export default function Header({headerReduced, map, controlHeaderReduced, setBut
          name: `${event.target.name.value}`,
          email: event.target.email.value,
          phone: event.target.phone.value,
-         pic: 'https://firebasestorage.googleapis.com/v0/b/mentolina-estadios.appspot.com/o/placeholder%2Fno_picture.jpg?alt=media&token=1d04832d-90d4-43d4-aead-fdb4f827f13f',
+         // 
+         // pic: 'https://firebasestorage.googleapis.com/v0/b/mentolina-estadios.appspot.com/o/placeholder%2Fno_picture.jpg?alt=media&token=1d04832d-90d4-43d4-aead-fdb4f827f13f',
+         pic: '/media/lata-seleccion.png',
          platform: 'manualmente'
       }
       registerManual({...data});
