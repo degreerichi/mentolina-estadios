@@ -13,6 +13,7 @@ export default function handler(req, res){
 
       let estadio = {
          id_registro: req.body.id,
+         creador: req.body.creador,
          nombre: req.body.nombre,
          prefijo: req.body.prefijo,
          fecha_registro: new Date(),

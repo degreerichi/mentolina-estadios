@@ -96,6 +96,7 @@ export default function Estadios({
       axios.post('api/add', {
          // id: userData.id,
          id: userData.email,
+         creador: userData.name,
          nombre: nombre,
          prefijo: 'Estadio',
          lat: location.lat,
