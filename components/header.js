@@ -5,17 +5,17 @@ import Loader from './loader'
 import Usernav from './usernav'
 import Estadios from './estadios'
 import { USER_DATA } from './strings'
-// import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
+import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
 import { GoogleLoginButton } from 'react-social-login-buttons'
 import GoogleLogin from 'react-google-login'
-// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFutbol } from '@fortawesome/free-solid-svg-icons'
 import useIsLogged from '../components/hooks/isLogged'
 import firebase from "firebase/app"
 import "firebase/firestore"
-// import * as Facebook from 'fb-sdk-wrapper'
+import * as Facebook from 'fb-sdk-wrapper'
 
 export default function Header({ headerReduced, map, controlHeaderReduced, setButtonViewDisabled, className, createMarkerAction, cantidadEstadios }) {
 
