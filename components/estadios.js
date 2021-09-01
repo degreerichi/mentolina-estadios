@@ -19,10 +19,10 @@ var marker = null;
 
 export default function Estadios({
    map,
-   reduced, 
-   controlHeaderReduced, 
-   wizardActive, 
-   setWizardActive, 
+   reduced,
+   controlHeaderReduced,
+   wizardActive,
+   setWizardActive,
    setButtonViewDisabled,
    createMarkerAction
 }) {
@@ -30,11 +30,12 @@ export default function Estadios({
    let [isLogged] = useIsLogged();
 
    let userData = JSON.parse(localStorage.getItem(USER_DATA));
+
    let apellido = userData !== null ? userData.name.split(" ").pop() : '';
 
    let [location, setLocation] = useState(null);
    let [locationSelected, setLocationSelected] = useState(false);
-   let [id, setId] = useState(userData !== null ? userData.id  : '');
+   let [id, setId] = useState(userData !== null ? userData.id : '');
    let [nombre, setNombre] = useState(`Estadio ${apellido}`);
    let [apodo, setApodo] = useState('El épico');
    let [saving, setSaving] = useState(false);
@@ -43,7 +44,7 @@ export default function Estadios({
       requestingPermissions,
       requestPermissions
    ] = useHasLocationPermissions();
-   const startWizard = ()=>{
+   const startWizard = () => {
       setupEventForMap();
       setWizardActive(true);
       controlHeaderReduced(true);
@@ -52,7 +53,7 @@ export default function Estadios({
       setApodo('El épico');
    }
 
-   const cancelWizard = ()=>{
+   const cancelWizard = () => {
       releaseMapEvents();
       setWizardActive(false);
       controlHeaderReduced(false);
@@ -63,34 +64,34 @@ export default function Estadios({
       setApodo('');
    }
 
-   const clickMarkerEvent = (e)=>{
+   const clickMarkerEvent = (e) => {
       // console.log(e.lngLat);
       setNewLocation(e.lngLat)
    }
 
-   const setNewLocation = (lngLat)=>{
+   const setNewLocation = (lngLat) => {
       console.log(lngLat);
-      if(marker !== null) marker.remove();
+      if (marker !== null) marker.remove();
       setLocation(lngLat);
       marker = new mapboxgl
-         .Marker({color: "#ce3f3f"})
+         .Marker({ color: "#ce3f3f" })
          .setLngLat(lngLat)
          .addTo(map);
    }
 
-   const setupEventForMap = ()=>{
-      if(map !== undefined) map.on('click', clickMarkerEvent);
+   const setupEventForMap = () => {
+      if (map !== undefined) map.on('click', clickMarkerEvent);
    }
 
-   const releaseMapEvents = ()=>{
-      if(marker !== null) marker.remove();
-      if(map !== undefined) map.off('click', clickMarkerEvent);
+   const releaseMapEvents = () => {
+      if (marker !== null) marker.remove();
+      if (map !== undefined) map.off('click', clickMarkerEvent);
    }
 
-   const submitHandler = (e)=>{
+   const submitHandler = (e) => {
       e.preventDefault();
       setSaving(true);
-      
+
 
       axios.post('api/add', {
          // id: userData.id,
@@ -101,20 +102,20 @@ export default function Estadios({
          long: location.lng,
          fecha_creacion: new Date()
       })
-         .then((res)=>{
+         .then((res) => {
             setSaving(false);
             cancelWizard();
             createMarkerAction(res.data.estadio);
          })
-         .catch((err)=>{
+         .catch((err) => {
             console.log(err);
          });
    }
 
-   const startWizardWrapper = ()=>{
+   const startWizardWrapper = () => {
       startWizard();
-      requestPermissions((res)=>{
-         if(res){
+      requestPermissions((res) => {
+         if (res) {
             let lnglat = {
                lng: res.coords.longitude,
                lat: res.coords.latitude
@@ -129,59 +130,64 @@ export default function Estadios({
       });
    }
    console.log(userData.platform);
-if(userData.platform === 'manualmente'){
-   return (
-      <>
-         {!reduced ? (
-            <>
-            {isLogged ? (
-               <Estadio 
-                  user={userData.email}
-                  // user={id} 
-                  controlHeaderReduced={controlHeaderReduced} 
-                  map={map} 
-                  startWizardAction={startWizardWrapper}
-                  apellido={apellido}/>
-            ) : (
+   if (userData.platform === 'manualmente') {
+      return (
+         <>
+            {!reduced ? (
                <>
-                  
+                  {isLogged ? (
+                     <Estadio
+                        user={userData.email}
+                        // user={id} 
+                        controlHeaderReduced={controlHeaderReduced}
+                        map={map}
+                        startWizardAction={startWizardWrapper}
+                        telefono={userData.phone}
+                        email={userData.email}
+                        name={userData.name}
+                        idUsuario= {id}
+                        picture = {userData.pic}
+                        apellido={apellido} />
+                  ) : (
+                     <>
+
+                     </>
+                  )}
                </>
-            )}
-            </>
-         ) : ''}
-         <div className={`wizard-nav ${wizardActive ? 'show' : ''}`}>
-            <h5>Selecciona una ubicación</h5>
-            <span className="d-inline-block mb-3">Haz clic en el mapa para ubicar tu estadio</span>
-            <button href="#!" className="button mb-3" disabled={location === null} onClick={()=>{setLocationSelected(true)}}>Seleccionar <FontAwesomeIcon icon={faLocationArrow}/></button>
-            <a href="#!" className="button small background-blue" onClick={cancelWizard}>Cancelar <FontAwesomeIcon icon={faTimes}/></a>
-         </div>
-         <Modal modalOpened={locationSelected} toggleModalAction={cancelWizard}>
-            <h3 className="mb-4">Crear estadio</h3>
-            <Form onSubmit={submitHandler}>
-               {/* <label htmlFor="exampleInputEmail1">Ubicación</label> */}
-               {/* <div className="row mb-2"> */}
+            ) : ''}
+            <div className={`wizard-nav ${wizardActive ? 'show' : ''}`}>
+               <h5>Selecciona una ubicación</h5>
+               <span className="d-inline-block mb-3">Haz clic en el mapa para ubicar tu estadio</span>
+               <button href="#!" className="button mb-3" disabled={location === null} onClick={() => { setLocationSelected(true) }}>Seleccionar <FontAwesomeIcon icon={faLocationArrow} /></button>
+               <a href="#!" className="button small background-blue" onClick={cancelWizard}>Cancelar <FontAwesomeIcon icon={faTimes} /></a>
+            </div>
+            <Modal modalOpened={locationSelected} toggleModalAction={cancelWizard}>
+               <h3 className="mb-4">Crear estadio</h3>
+               <Form onSubmit={submitHandler}>
+                  {/* <label htmlFor="exampleInputEmail1">Ubicación</label> */}
+                  {/* <div className="row mb-2"> */}
                   {/* <div className="col"> */}
-                     {/* <label htmlFor="exampleInputEmail1">Latitud</label> */}
-                     <Input type="hidden" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
-                        validations={[required]}/>
+                  {/* <label htmlFor="exampleInputEmail1">Latitud</label> */}
+                  <Input type="hidden" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
+                     validations={[required]} />
                   {/* </div> */}
                   {/* <div className="col"> */}
-                     {/* <label htmlFor="exampleInputEmail1">Longitud</label> */}
-                     <Input type="hidden" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
-                        validations={[required]}/>
+                  {/* <label htmlFor="exampleInputEmail1">Longitud</label> */}
+                  <Input type="hidden" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
+                     validations={[required]} />
                   {/* </div> */}
-               {/* </div> */}
-               <h5 htmlFor="exampleInputEmail1" className="mb-4">Nombre del Estadio</h5>
-               <div className="row mb-4">
-                  <div className="col-4 d-flex justify-content-center align-items-center">
-                     <h5 className="d-block">Estadio</h5>
+                  {/* </div> */}
+                  <h5 htmlFor="exampleInputEmail1" className="mb-4">Nombre del Estadio</h5>
+                  <div className="row mb-4">
+                     <div className="col-4 d-flex justify-content-center align-items-center">
+                        <h5 className="d-block">Estadio</h5>
+                     </div>
+                     <div className="col-8">
+                        <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e) => { setNombre(e.target.value) }}
+                           validations={[required]} />
+                     </div>
                   </div>
-                  <div className="col-8">
-                     <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e)=>{setNombre(e.target.value)}}
-                        validations={[required]}/>
-                  </div>
-               </div>
-               {/* <div className="form-group w-100">
+                  {/* <div className="form-group w-100">
                   <label htmlFor="exampleInputEmail1">Apodo</label>
                   <Select name="apodo" className="form-control" id="exampleFormControlSelect1"
                      validations={[required]} value={apodo} onChange={(e)=>{setApodo(e.target.value)}}>
@@ -198,65 +204,70 @@ if(userData.platform === 'manualmente'){
                      <option value="La leyenda">La leyenda</option>
                   </Select>
                </div> */}
-               <Button type="submit" className="button">Guardar</Button>
-            </Form>
-         </Modal>
-         <Loader show={saving}/>
-      </>
-   )
-}else{
-   return (
-      <>
-         {!reduced ? (
-            <>
-            {isLogged ? (
-               <Estadio 
-                  // user={userData.email}
-                  user={id} 
-                  controlHeaderReduced={controlHeaderReduced} 
-                  map={map} 
-                  startWizardAction={startWizardWrapper}
-                  apellido={apellido}/>
-            ) : (
+                  <Button type="submit" className="button">Guardar</Button>
+               </Form>
+            </Modal>
+            <Loader show={saving} />
+         </>
+      )
+   } else {
+      return (
+         <>
+            {!reduced ? (
                <>
-                  
+                  {isLogged ? (
+                     <Estadio
+                        // user={userData.email}
+                        user={id}
+                        controlHeaderReduced={controlHeaderReduced}
+                        map={map}
+                        startWizardAction={startWizardWrapper}
+                        telefono={userData.phone}
+                        email ={userData.email}
+                        name ={userData.name}
+                        idUsuario= {id}
+                        picture = {userData.pic}
+                        apellido={apellido} />
+                  ) : (
+                     <>
+
+                     </>
+                  )}
                </>
-            )}
-            </>
-         ) : ''}
-         <div className={`wizard-nav ${wizardActive ? 'show' : ''}`}>
-            <h5>Selecciona una ubicación</h5>
-            <span className="d-inline-block mb-3">Haz clic en el mapa para ubicar tu estadio</span>
-            <button href="#!" className="button mb-3" disabled={location === null} onClick={()=>{setLocationSelected(true)}}>Seleccionar <FontAwesomeIcon icon={faLocationArrow}/></button>
-            <a href="#!" className="button small background-blue" onClick={cancelWizard}>Cancelar <FontAwesomeIcon icon={faTimes}/></a>
-         </div>
-         <Modal modalOpened={locationSelected} toggleModalAction={cancelWizard}>
-            <h3 className="mb-4">Crear estadio</h3>
-            <Form onSubmit={submitHandler}>
-               {/* <label htmlFor="exampleInputEmail1">Ubicación</label> */}
-               {/* <div className="row mb-2"> */}
+            ) : ''}
+            <div className={`wizard-nav ${wizardActive ? 'show' : ''}`}>
+               <h5>Selecciona una ubicación</h5>
+               <span className="d-inline-block mb-3">Haz clic en el mapa para ubicar tu estadio</span>
+               <button href="#!" className="button mb-3" disabled={location === null} onClick={() => { setLocationSelected(true) }}>Seleccionar <FontAwesomeIcon icon={faLocationArrow} /></button>
+               <a href="#!" className="button small background-blue" onClick={cancelWizard}>Cancelar <FontAwesomeIcon icon={faTimes} /></a>
+            </div>
+            <Modal modalOpened={locationSelected} toggleModalAction={cancelWizard}>
+               <h3 className="mb-4">Crear estadio</h3>
+               <Form onSubmit={submitHandler}>
+                  {/* <label htmlFor="exampleInputEmail1">Ubicación</label> */}
+                  {/* <div className="row mb-2"> */}
                   {/* <div className="col"> */}
-                     {/* <label htmlFor="exampleInputEmail1">Latitud</label> */}
-                     <Input type="hidden" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
-                        validations={[required]}/>
+                  {/* <label htmlFor="exampleInputEmail1">Latitud</label> */}
+                  <Input type="hidden" className="form-control w-100" name="latitud" value={location !== null ? location.lat : 0} disabled
+                     validations={[required]} />
                   {/* </div> */}
                   {/* <div className="col"> */}
-                     {/* <label htmlFor="exampleInputEmail1">Longitud</label> */}
-                     <Input type="hidden" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
-                        validations={[required]}/>
+                  {/* <label htmlFor="exampleInputEmail1">Longitud</label> */}
+                  <Input type="hidden" className="form-control w-100" name="longitud" value={location !== null ? location.lng : 0} disabled
+                     validations={[required]} />
                   {/* </div> */}
-               {/* </div> */}
-               <h5 htmlFor="exampleInputEmail1" className="mb-4">Nombre del Estadio</h5>
-               <div className="row mb-4">
-                  <div className="col-4 d-flex justify-content-center align-items-center">
-                     <h5 className="d-block">Estadio</h5>
+                  {/* </div> */}
+                  <h5 htmlFor="exampleInputEmail1" className="mb-4">Nombre del Estadio</h5>
+                  <div className="row mb-4">
+                     <div className="col-4 d-flex justify-content-center align-items-center">
+                        <h5 className="d-block">Estadio</h5>
+                     </div>
+                     <div className="col-8">
+                        <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e) => { setNombre(e.target.value) }}
+                           validations={[required]} />
+                     </div>
                   </div>
-                  <div className="col-8">
-                     <Input type="text" className="form-control w-100" name="nombre" value={nombre} onChange={(e)=>{setNombre(e.target.value)}}
-                        validations={[required]}/>
-                  </div>
-               </div>
-               {/* <div className="form-group w-100">
+                  {/* <div className="form-group w-100">
                   <label htmlFor="exampleInputEmail1">Apodo</label>
                   <Select name="apodo" className="form-control" id="exampleFormControlSelect1"
                      validations={[required]} value={apodo} onChange={(e)=>{setApodo(e.target.value)}}>
@@ -273,12 +284,12 @@ if(userData.platform === 'manualmente'){
                      <option value="La leyenda">La leyenda</option>
                   </Select>
                </div> */}
-               <Button type="submit" className="button">Guardar</Button>
-            </Form>
-         </Modal>
-         <Loader show={saving}/>
-      </>
-   )
-}
-  
+                  <Button type="submit" className="button">Guardar</Button>
+               </Form>
+            </Modal>
+            <Loader show={saving} />
+         </>
+      )
+   }
+
 }
