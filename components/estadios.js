@@ -97,6 +97,7 @@ export default function Estadios({
          // id: userData.id,
          id: userData.email,
          creador: userData.name,
+         telefono: userData.phone === undefined ? "No disponible" : userData.phone,
          nombre: nombre,
          prefijo: 'Estadio',
          lat: location.lat,
@@ -146,8 +147,8 @@ export default function Estadios({
                         telefono={userData.phone}
                         email={userData.email}
                         name={userData.name}
-                        idUsuario= {id}
-                        picture = {userData.pic}
+                        idUsuario={id}
+                        picture={userData.pic}
                         apellido={apellido} />
                   ) : (
                      <>
@@ -224,10 +225,10 @@ export default function Estadios({
                         map={map}
                         startWizardAction={startWizardWrapper}
                         telefono={userData.phone}
-                        email ={userData.email}
-                        name ={userData.name}
-                        idUsuario= {id}
-                        picture = {userData.pic}
+                        email={userData.email}
+                        name={userData.name}
+                        idUsuario={id}
+                        picture={userData.pic}
                         apellido={apellido} />
                   ) : (
                      <>
