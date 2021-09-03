@@ -120,8 +120,15 @@ export default function Home({ lng, lat }) {
             estadiosRaw.push(doc.data());
          });
          docs.forEach((doc) => {
-            if (estadiosRawHalf.length <= estadiosRaw.length / 4 || doc.id === `est${userData.email}` || doc.id === `est${userData.id}`) {
-               estadiosRawHalf.push(doc.data());
+            if(userData !== undefined){
+               if (estadiosRawHalf.length <= estadiosRaw.length / 4 || doc.id === `est${userData.email}` || doc.id === `est${userData.id}`) {
+                  estadiosRawHalf.push(doc.data());
+               }
+            }else{
+
+               if (estadiosRawHalf.length <= estadiosRaw.length / 4 ) {
+                  estadiosRawHalf.push(doc.data());
+               }
             }
          });
          setEstadios(estadiosRaw);
