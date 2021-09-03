@@ -131,7 +131,7 @@ console.log("userData.phone = "+userData.phone);
          }
       });
    }
-   console.log(userData.platform);
+   // console.log(userData.platform);
    if (userData.platform === 'manualmente') {
       return (
          <>

@@ -11,6 +11,8 @@ import firebase from "firebase/app"
 import "firebase/firestore"
 import Modal from '../components/modal'
 import Slider from "react-slick"
+import { USER_DATA } from '../components/strings'
+
 
 var map;
 
@@ -101,11 +103,16 @@ export default function Home({ lng, lat }) {
 
       var db = firebase.firestore();
 
+
       setLoadingEstadios(true);
 
       db.collection('estadios').get().then((docs) => {
          var estadiosRaw = [];
          var estadiosRawHalf = [];
+
+         let userData = JSON.parse(localStorage.getItem(USER_DATA));
+  
+
          docs.forEach((doc) => {
             // let datos = doc.data();
             // doc.data() is never undefined for query doc snapshots
@@ -113,7 +120,7 @@ export default function Home({ lng, lat }) {
             estadiosRaw.push(doc.data());
          });
          docs.forEach((doc) => {
-            if (estadiosRawHalf.length <= estadiosRaw.length / 4) {
+            if (estadiosRawHalf.length <= estadiosRaw.length / 4 || doc.id === `est${userData.email}` || doc.id === `est${userData.id}`) {
                estadiosRawHalf.push(doc.data());
             }
          });
@@ -123,8 +130,6 @@ export default function Home({ lng, lat }) {
       }).catch((err) => {
          console.log(err);
       });
-
-      
 
    }
 
