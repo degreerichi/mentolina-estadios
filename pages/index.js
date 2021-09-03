@@ -119,8 +119,9 @@ export default function Home({ lng, lat }) {
             // console.log(doc.id, " => ", datos);
             estadiosRaw.push(doc.data());
          });
+         console.log(userData);
          docs.forEach((doc) => {
-            if(userData !== undefined){
+            if(userData !== null){
                if (estadiosRawHalf.length <= estadiosRaw.length / 4 || doc.id === `est${userData.email}` || doc.id === `est${userData.id}`) {
                   estadiosRawHalf.push(doc.data());
                }
