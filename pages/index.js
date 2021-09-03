@@ -15,13 +15,13 @@ import Slider from "react-slick"
 var map;
 
 export async function getServerSideProps(context) {
-  
-  return {
-    props: {
-       lng: context.query.lng !== undefined ? context.query.lng : null,
-       lat: context.query.lat !== undefined ? context.query.lat : null
-    }
-  }
+
+   return {
+      props: {
+         lng: context.query.lng !== undefined ? context.query.lng : null,
+         lat: context.query.lat !== undefined ? context.query.lat : null
+      }
+   }
 }
 
 // var locations = [
@@ -31,11 +31,11 @@ export async function getServerSideProps(context) {
 //    [-88.2475647, 14.926786]
 // ];
 
-export default function Home({lng, lat}) {
+export default function Home({ lng, lat }) {
 
    // const router = useRouter();
    // const { lng, lat } = router.query;
-   
+
    // let [isLogged, checkingLogged] = useIsLogged();
 
    // let headingRef = useRef();
@@ -56,11 +56,11 @@ export default function Home({lng, lat}) {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplaySpeed: 2500
-    };
+   };
 
-   useEffect(()=>{
+   useEffect(() => {
 
-      if(firebase.apps.length === 0)
+      if (firebase.apps.length === 0)
          firebase.initializeApp(firebaseConfig);
 
       mapboxgl.accessToken = 'pk.eyJ1Ijoib2dpbHZ5aG4iLCJhIjoiY2tuNHZvemoxMWxlODJvbzhjcXJ2dXA0ZiJ9.-qM5P55gShtgXzKLXMbVqQ';
@@ -69,15 +69,15 @@ export default function Home({lng, lat}) {
          style: 'mapbox://styles/ogilvyhn/ckn4w7ba5023n17qz53gzncbj'
       });
 
-      map.on('load', function() {
-         
+      map.on('load', function () {
+
          setMapInstance(map);
          getEstadios(map);
 
          // console.log(router.query);
-         console.log({lng, lat});
+         console.log({ lng, lat });
 
-         if(lng !== null && lat !== null)
+         if (lng !== null && lat !== null)
             viewLocationInMap(lng, lat);
 
       });
@@ -85,7 +85,7 @@ export default function Home({lng, lat}) {
       // firebase.analytics();
    }, []);
 
-   const viewLocationInMap = (longitude, latitude)=>{
+   const viewLocationInMap = (longitude, latitude) => {
 
       toggleHeaderReduced(false);
 
@@ -97,36 +97,44 @@ export default function Home({lng, lat}) {
 
    }
 
-   const getEstadios = (map)=>{
+   const getEstadios = (map) => {
 
       var db = firebase.firestore();
-      
+
       setLoadingEstadios(true);
 
-      db.collection('estadios').get().then((docs)=>{
+      db.collection('estadios').get().then((docs) => {
          var estadiosRaw = [];
+         var estadiosRawHalf = [];
          docs.forEach((doc) => {
             // let datos = doc.data();
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", datos);
             estadiosRaw.push(doc.data());
          });
+         docs.forEach((doc) => {
+            if (estadiosRawHalf.length <= estadiosRaw.length / 4) {
+               estadiosRawHalf.push(doc.data());
+            }
+         });
          setEstadios(estadiosRaw);
-         loadMarkers(map, estadiosRaw);
+         loadMarkers(map, estadiosRawHalf);
          setLoadingEstadios(false);
-      }).catch((err)=>{
+      }).catch((err) => {
          console.log(err);
       });
 
+      
+
    }
 
-   const loadMarkers = (map, estadiosRaw)=>{
-      estadiosRaw.map((estadio)=>{
+   const loadMarkers = (map, estadiosRaw) => {
+      estadiosRaw.map((estadio) => {
          createEstadioMarker(estadio);
       });
    }
 
-   const createEstadioMarker = (estadio)=>{
+   const createEstadioMarker = (estadio) => {
       var el = document.createElement('div');
       el.className = 'marker';
       var img = document.createElement('img');
@@ -142,7 +150,7 @@ export default function Home({lng, lat}) {
       );
 
       var popup = new mapboxgl.Popup({
-         offset: 25, 
+         offset: 25,
          closeOnMove: true,
          className: 'marker-popup'
       }).setText(
@@ -156,16 +164,16 @@ export default function Home({lng, lat}) {
          .addTo(map);
    }
 
-   const zoomIn = ()=>{
-      if(map != null) map.zoomIn({duration: 500});
+   const zoomIn = () => {
+      if (map != null) map.zoomIn({ duration: 500 });
    }
 
-   const zoomOut = ()=>{
-      if(map != null) map.zoomOut({duration: 500});
+   const zoomOut = () => {
+      if (map != null) map.zoomOut({ duration: 500 });
    }
 
-   const resetZoomAndLocation = ()=>{
-      if(map != null){
+   const resetZoomAndLocation = () => {
+      if (map != null) {
          // map.setCenter([-86.153, 14.847]);
          // map.setZoom(6.5);
          map.flyTo({
@@ -176,17 +184,17 @@ export default function Home({lng, lat}) {
       }
    }
 
-   const toggleHeaderReduced = (movingmap = true)=>{
-      if(movingmap){
+   const toggleHeaderReduced = (movingmap = true) => {
+      if (movingmap) {
          !headerReduced ? zoomOut() : resetZoomAndLocation();
       }
       setHeaderReduced(!headerReduced);
    }
 
-   const toggleModalPremios = ()=>{
+   const toggleModalPremios = () => {
       setModalEstadiosOpened(!modalEstadiosOpened);
    }
-   const toggleModalTerminosCondiciones = ()=>{
+   const toggleModalTerminosCondiciones = () => {
       setModalTerminosCondiciones(!modalTerminosCondiciones);
    }
 
@@ -195,17 +203,17 @@ export default function Home({lng, lat}) {
          <Head>
             <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
             {/* <script src="https://kit.fontawesome.com/fdb97cba60.js" crossOrigin="anonymous"></script> */}
-            <link rel="preconnect" href="https://fonts.gstatic.com"/>
-            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600;900&display=swap" rel="stylesheet"/>
-            <meta property="og:url" content={`https://micasamiestadio.com`}/>
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="Mi Casa Mi Estadio"/>
-            <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio"/>
-            <meta property="og:image" content='/media/share-v2.jpg'/>
-            <meta property="og:image:url" content='/media/share-v2.jpg'/>
-            <meta property="og:image:width" content="1000"/>
-            <meta property="og:image:height" content="1000"/>
-            <meta property="fb:app_id" content="827394434550474"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;600;900&display=swap" rel="stylesheet" />
+            <meta property="og:url" content={`https://micasamiestadio.com`} />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Mi Casa Mi Estadio" />
+            <meta property="og:description" content="Apoyemos a la H compartiendo nuestro propio estadio" />
+            <meta property="og:image" content='/media/share-v2.jpg' />
+            <meta property="og:image:url" content='/media/share-v2.jpg' />
+            <meta property="og:image:width" content="1000" />
+            <meta property="og:image:height" content="1000" />
+            <meta property="fb:app_id" content="827394434550474" />
             <title>Mi Casa Mi Estadio</title>
             <meta name="description" content="Creá tu estadio desde tu propia casa y apoyá a la H en Mi Casa Mi Estadio" />
             <meta name="keywords" content="estadio,lah,conla12enelpecho,Honduras,mentolina,infarma,H" />
@@ -217,7 +225,7 @@ export default function Home({lng, lat}) {
                   gtag('js', new Date());
                   gtag('config', 'G-ZFH68VKKRS');
                `
-            }}/>
+            }} />
             {/* <!-- Facebook Pixel Code --> */}
             <script dangerouslySetInnerHTML={{
                __html: `
@@ -235,16 +243,16 @@ export default function Home({lng, lat}) {
             }}>
             </script>
             <noscript>
-            <img height="1" width="1" src="https://www.facebook.com/tr?id=305007251100756&ev=PageView&noscript=1"/>
+               <img height="1" width="1" src="https://www.facebook.com/tr?id=305007251100756&ev=PageView&noscript=1" />
             </noscript>
             {/* <!-- End Facebook Pixel Code --> */}
          </Head>
          <div className="bottom-nav">
             {!headerReduced
-               ? <button href="#!" disabled={buttonViewDisabled} className="button" onClick={toggleHeaderReduced}>Ver estadios <FontAwesomeIcon icon={faExpandArrowsAlt}/></button>
-               : <button href="#!" disabled={buttonViewDisabled} className="button" onClick={toggleHeaderReduced}>Volver <FontAwesomeIcon icon={faCompressArrowsAlt}/></button>}
+               ? <button href="#!" disabled={buttonViewDisabled} className="button" onClick={toggleHeaderReduced}>Ver estadios <FontAwesomeIcon icon={faExpandArrowsAlt} /></button>
+               : <button href="#!" disabled={buttonViewDisabled} className="button" onClick={toggleHeaderReduced}>Volver <FontAwesomeIcon icon={faCompressArrowsAlt} /></button>}
          </div>
-         <Header 
+         <Header
             className="position-relative"
             headerReduced={headerReduced}
             map={mapInstance}
@@ -252,12 +260,12 @@ export default function Home({lng, lat}) {
             setButtonViewDisabled={setButtonViewDisabled}
             createMarkerAction={createEstadioMarker}
             cantidadEstadios={estadios.length}
-            />
+         />
          <div id="map" className="background-map-wrapper"></div>
-         <SimpleLoader show={loadingEstadios}/>
-         <a href="#!" className="right-button premios" onClick={toggleModalPremios}><FontAwesomeIcon icon={faTrophy}/></a>
-         <a href="#!" className="right-button terminos" onClick={toggleModalTerminosCondiciones}><FontAwesomeIcon icon={faFileContract}/></a>
-         <img className="mentolina-logo" src="/media/hashtag-logo-mentolina.png" alt=""/>
+         <SimpleLoader show={loadingEstadios} />
+         <a href="#!" className="right-button premios" onClick={toggleModalPremios}><FontAwesomeIcon icon={faTrophy} /></a>
+         <a href="#!" className="right-button terminos" onClick={toggleModalTerminosCondiciones}><FontAwesomeIcon icon={faFileContract} /></a>
+         <img className="mentolina-logo" src="/media/hashtag-logo-mentolina.png" alt="" />
          {!headerReduced ? (
             <div className="cintillo">
                <Slider {...sliderSettings}>
@@ -288,7 +296,7 @@ export default function Home({lng, lat}) {
                </Slider>
             </div>
          ) : ''}
-         
+
          <Modal modalOpened={modalEstadiosOpened} toggleModalAction={toggleModalPremios} smallwidth={false}>
             <h1 className="text-center mb-4">Premios</h1>
             <div className="row">
@@ -356,14 +364,14 @@ export default function Home({lng, lat}) {
                   <li>El participante deberá contestar el mensaje enviado a través de su Facebook o las llamadas realizadas por representantes de la marca INDUSTRIA FARMACÉUTICA S.A. (INFARMA) en el tiempo indicado y presentarse con su identificación en la hora, fecha y lugar que INDUSTRIA FARMACÉUTICA S.A. (INFARMA) confirme. De lo contrario, el premio no se le entregará y será otorgado a otro participante que cumpla con los requisitos. </li>
                   <li>El participante que ganó la dinámica será la única persona que pueda reclamar el premio. </li>
                </ol>
-               
+
                <h4 className="my-2">Anexos:</h4>
                <ol>
                   <li>INDUSTRIA FARMACÉUTICA S.A. (INFARMA) se reserva el derecho de realizar modificaciones o anexos sobre la mecánica, vigencia y premios siempre que estén justificados, no perjudiquen a los participantes o ganadores, y sean comunicados a estos debidamente por este medio.</li>
                   <li>Facebook no avala, patrocina ni administra de manera alguna esta promoción, ni se encuentra asociado con ella.</li>
                </ol>
-         
-            </div>            
+
+            </div>
          </Modal>
       </>
    )
