@@ -30,7 +30,7 @@ export default function handler(req, res){
             result: 'ok',
             estadio: estadio
          });
-         // db.collection('estadios_rifa_sabado').doc(`est${req.body.id}`).set(estadio).then((response)=>{
+         // db.collection('estadios_sorteo_****').doc(`est${req.body.id}`).set(estadio).then((response)=>{
 
          //    res.send({
          //       result: 'ok',
