@@ -48,7 +48,7 @@ export default function Estadio({ user, controlHeaderReduced, map, startWizardAc
       controlHeaderReduced(true);
 
       map.flyTo({
-         zoom: 15,
+         zoom: 14,
          center: [estadioInfo.ubicacion.longitude, estadioInfo.ubicacion.latitude],
          pitch: 0
       });
@@ -139,7 +139,7 @@ export default function Estadio({ user, controlHeaderReduced, map, startWizardAc
    
       return (
 
-         <form className="py-2 btn-lg btn-block " onSubmit={registrarTelefono}>
+         <form className="py-2  " onSubmit={registrarTelefono}>
             {/* <label htmlFor="name">Teléfono</label> */}
             <input id="number" placeholder="Teléfono" className="mb-2 form-control" name="phone" type="tel" autoComplete="phone" required />
 
