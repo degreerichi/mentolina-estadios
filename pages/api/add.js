@@ -32,10 +32,10 @@ export default function handler(req, res){
          // });
          db.collection('estadios_sorteo_miercoles_seis_octubre').doc(`est${req.body.id}`).set(estadio).then((response)=>{
 
-            res.send({
-               result: 'ok',
-               estadio: estadio
-            });
+            // res.send({
+            //    result: 'ok',
+            //    estadio: estadio
+            // });
    
          }).catch(()=>{
    
