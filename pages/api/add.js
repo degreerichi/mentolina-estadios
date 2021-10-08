@@ -26,40 +26,40 @@ export default function handler(req, res){
 
       db.collection('estadios').doc(`est${req.body.id}`).set(estadio).then((response)=>{
 
-         // res.send({
-         //    result: 'ok',
-         //    estadio: estadio
+         res.send({
+            result: 'ok',
+            estadio: estadio
+         });
+         // db.collection('estadios_sorteo_miercoles_seis_octubre').doc(`est${req.body.id}`).set(estadio).then((response)=>{
+
+         //    // res.send({
+         //    //    result: 'ok',
+         //    //    estadio: estadio
+         //    // });
+   
+         // }).catch(()=>{
+   
+         //    res.send({
+         //       result: 'error',
+         //       message: 'Error, no se pudo crear el estadio'
+         //    });
+   
          // });
-         db.collection('estadios_sorteo_miercoles_seis_octubre').doc(`est${req.body.id}`).set(estadio).then((response)=>{
+         // db.collection('estadios_sorteo_miercoles_seis_octubre_segundo').doc(`est${req.body.id}`).set(estadio).then((response)=>{
 
-            // res.send({
-            //    result: 'ok',
-            //    estadio: estadio
-            // });
+         //    res.send({
+         //       result: 'ok',
+         //       estadio: estadio
+         //    });
    
-         }).catch(()=>{
+         // }).catch(()=>{
    
-            res.send({
-               result: 'error',
-               message: 'Error, no se pudo crear el estadio'
-            });
+         //    res.send({
+         //       result: 'error',
+         //       message: 'Error, no se pudo crear el estadio'
+         //    });
    
-         });
-         db.collection('estadios_sorteo_miercoles_seis_octubre_segundo').doc(`est${req.body.id}`).set(estadio).then((response)=>{
-
-            res.send({
-               result: 'ok',
-               estadio: estadio
-            });
-   
-         }).catch(()=>{
-   
-            res.send({
-               result: 'error',
-               message: 'Error, no se pudo crear el estadio'
-            });
-   
-         });
+         // });
       }).catch(()=>{
 
          res.send({
