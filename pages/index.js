@@ -121,13 +121,14 @@ export default function Home({ lng, lat }) {
          });
          console.log(userData);
          docs.forEach((doc) => {
+            // Limitar la cantidad de estadios que se grafican a 300
             if(userData !== null){
-               if (estadiosRawHalf.length <= estadiosRaw.length / 4 || doc.id === `est${userData.email}` || doc.id === `est${userData.id}`) {
+               if (estadiosRawHalf.length <= 300 || doc.id === `est${userData.email}` || doc.id === `est${userData.id}`) {
                   estadiosRawHalf.push(doc.data());
                }
             }else{
-
-               if (estadiosRawHalf.length <= estadiosRaw.length / 4 ) {
+               
+               if (estadiosRawHalf.length <= 300 ) {
                   estadiosRawHalf.push(doc.data());
                }
             }
