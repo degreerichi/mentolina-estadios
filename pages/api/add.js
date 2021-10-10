@@ -10,7 +10,20 @@ export default function handler(req, res){
          firebase.initializeApp(firebaseConfig);
       
       var db = firebase.firestore();
+const currentDate = new Date();
 
+console.log(currentDate.getHours());
+var d = new Date();
+var weekday = new Array(7);
+weekday[0] = "domingo";
+weekday[1] = "lunes";
+weekday[2] = "martes";
+weekday[3] = "miercoles";
+weekday[4] = "jueves";
+weekday[5] = "viernes";
+weekday[6] = "sabado";
+
+var diaCreado = weekday[d.getDay()];
       let estadio = {
          id_registro: req.body.id,
          creador: req.body.creador,
@@ -18,6 +31,8 @@ export default function handler(req, res){
          nombre: req.body.nombre,
          prefijo: req.body.prefijo,
          fecha_registro: new Date(),
+         dia_registro:diaCreado,
+         hora_creacion:currentDate.getHours(),
          ubicacion: {
             latitude: req.body.lat,
             longitude: req.body.long
