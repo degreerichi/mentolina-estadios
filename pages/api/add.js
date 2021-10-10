@@ -13,7 +13,7 @@ export default function handler(req, res){
 const currentDate = new Date();
 
 console.log(currentDate.getHours());
-var d = new Date();
+var objetoDate = new Date();
 var weekday = new Array(7);
 weekday[0] = "domingo";
 weekday[1] = "lunes";
@@ -23,7 +23,7 @@ weekday[4] = "jueves";
 weekday[5] = "viernes";
 weekday[6] = "sabado";
 
-var diaCreado = weekday[d.getDay()];
+var diaCreado = weekday[objetoDate.getDay()];
       let estadio = {
          id_registro: req.body.id,
          creador: req.body.creador,
@@ -33,6 +33,7 @@ var diaCreado = weekday[d.getDay()];
          fecha_registro: new Date(),
          dia_registro:diaCreado,
          hora_creacion:currentDate.getHours(),
+         fecha_completa:objetoDate.getDay()+"-"+objetoDate.getMonth()+"-"+objetoDate.getFullYear(),
          ubicacion: {
             latitude: req.body.lat,
             longitude: req.body.long
