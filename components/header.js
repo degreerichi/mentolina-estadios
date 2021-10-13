@@ -192,13 +192,15 @@ export default function Header({ headerReduced, map, controlHeaderReduced, setBu
          refreshCheck();
       }).catch((err) => {
          console.log(err);
+      }).then((data)=>{
+         location.reload();
       });
 
    }
 
    const saveLocalData = (data) => {
       setUserData(data);
-      localStorage.setItem(USER_DATA, JSON.stringify(data));
+      localStorage.setItem(USER_DATA, JSON.stringify(data)); // Nombre con el cual se guarda el localStorage  "user_data"
    }
 
    const logout = () => {
@@ -232,7 +234,8 @@ export default function Header({ headerReduced, map, controlHeaderReduced, setBu
       // });
 
    }, []);
-
+   // console.log("Datos del userData");
+   // console.log(userData);
    return (
       <div className={className}>
          <Usernav user={userData} actions={[{ text: "Cerrar Sesión", action: logout }]} />

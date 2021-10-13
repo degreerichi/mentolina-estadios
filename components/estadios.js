@@ -91,7 +91,7 @@ export default function Estadios({
    const submitHandler = (e) => {
       e.preventDefault();
       setSaving(true);
-console.log("userData.phone = "+userData.phone);
+// console.log("userData.phone = "+userData.phone);
 
       axios.post('api/add', {
          // id: userData.id,

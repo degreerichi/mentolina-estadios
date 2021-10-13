@@ -21,7 +21,7 @@ export default function handler(req, res){
          fecha_registro: new Date(),
          telefono: req.body.phone,
          plataforma: req.body.platform
-      }).then(()=>{
+      }).then((data)=>{
 
          cookies.set('token', req.body.token, {
             httpOnly: true
@@ -31,6 +31,7 @@ export default function handler(req, res){
             result: 'ok'
          });
 
+// return data;
       }).catch(()=>{
 
          res.send({
