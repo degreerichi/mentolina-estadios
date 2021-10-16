@@ -119,6 +119,13 @@ export default function Estadio({ user, controlHeaderReduced, map, startWizardAc
 
    // console.log(map);
    function FormularioIngresoTelefono() {
+
+      function validaNumericos(event) {
+         if(event.charCode >= 48 && event.charCode <= 57){
+            return true;
+         }
+            return false;        
+      }
       const registrarTelefono = async event => {
          event.preventDefault()
          let data = {
@@ -141,7 +148,7 @@ export default function Estadio({ user, controlHeaderReduced, map, startWizardAc
 
          <form className="py-2  " onSubmit={registrarTelefono}>
             {/* <label htmlFor="name">Teléfono</label> */}
-            <input id="number" placeholder="Teléfono" className="mb-2 form-control" name="phone" type="tel" autoComplete="phone" required />
+            <input id="number" placeholder="Teléfono" className="mb-2 form-control" onkeypress='return validaNumericos(event)' name="phone" type="number" autoComplete="phone" required />
 
             {/* <button type="submit" className="btn btn-primary btn-lg btn-block">Aceptar</button> */}
             <div className="container">

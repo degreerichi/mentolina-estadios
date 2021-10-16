@@ -75,6 +75,14 @@ export default function Header({ headerReduced, map, controlHeaderReduced, setBu
    //    // }
    // }
    function FormularioRegistro() {
+
+      function validaNumericos(event) {
+         console.log("Entro");
+         if(event.charCode >= 48 && event.charCode <= 57){
+            return true;
+         }
+            return false;        
+      }
       const registerUser = async event => {
          event.preventDefault()
          let data = {
@@ -109,7 +117,7 @@ export default function Header({ headerReduced, map, controlHeaderReduced, setBu
             <label htmlFor="name">Nombre</label>
             <input id="name" className="mb-2 form-control" name="name" type="text" autoComplete="name" required />
             <label htmlFor="name">Teléfono</label>
-            <input id="number" className="mb-2 form-control" name="phone" type="text" autoComplete="phone" required />
+            <input id="number" className="mb-2 form-control" name="phone" type="number"  pattern="[0-9]+" onkeypress= "return validaNumericos(event)" autoComplete="phone" required />
             <label htmlFor="name">Correo</label>
             <input id="email" className="mb-2 form-control" name="email" type="email" autoComplete="email" required />
             {/* <button type="submit">Registrarme</button> */}
